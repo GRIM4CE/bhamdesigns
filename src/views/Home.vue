@@ -1,18 +1,42 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+<section>
+  <bio></bio>
+  <div class='card-container'>
+    <projectcard v-for='(project, index) in projects' :key='index' :project='project'></projectcard>
   </div>
+</section>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script type='text/javascript'>
+import store from '@/store'
 
-@Component({
+import projectcard from '../components/project-card.vue'
+import bio from '../components/bio.vue'
+
+export default {
   components: {
-    HelloWorld,
+    projectcard,
+    bio,
   },
-})
-export default class Home extends Vue {}
+  data() {
+    return {
+      loading: false,
+    }
+  },
+  computed: {
+    projects() {
+       return store.getters.activeProjects
+    },
+  },
+  created() {
+    this.loading = true
+    store.dispatch('fetchProjects')
+      .then(() => { this.loading = false })
+  },
+}
 </script>
+
+<style lang='scss' scoped>
+@import '../sass/variables.scss';
+@import './home.scss';
+</style>
