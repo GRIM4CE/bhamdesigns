@@ -28,7 +28,7 @@
 
 @media all and (min-width: 62.5rem) {
   .card-container {
-    padding: $gutter / 2 $gutter $gutter / 2 $gutter * 4;
+    padding: $gutter * 2 $gutter $gutter * 2 $gutter * 4;
     grid-template-columns: repeat(5, minmax(0, 250px));
   }
 }
