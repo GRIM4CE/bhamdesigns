@@ -14,3 +14,15 @@ $secondary400: #ffb800;
 $header-height: 66px;
 $footer-height: 40px;
 $gutter: 16px;
+
+@mixin tablet {
+  @media all and (min-width: 37.5rem) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media all and (min-width: 62.5rem) {
+    @content;
+  }
+}

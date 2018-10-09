@@ -18,20 +18,15 @@ export default {
     projectcard,
     bio,
   },
-  data() {
-    return {
-      loading: false,
-    }
-  },
   computed: {
     projects() {
-       return store.getters.activeProjects
+      return store.getters.activeProjects
     },
   },
   created() {
-    this.loading = true
     store.dispatch('fetchProjects')
-      .then(() => { this.loading = false })
+      .then(() => {
+      })
   },
 }
 </script>

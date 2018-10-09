@@ -1,4 +1,7 @@
-# bhamdesigns
+# Bham Designs
+https://bhamdesigns.com/
+
+Jon Leibham's Portfolio Website developed with Vue.js, Vuex, Vue Router, Firebase, Typescript and Scss.
 
 ## Project setup
 ```
@@ -14,13 +17,4 @@ npm run serve
 ```
 npm run build
 ```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
+Please see https://router.vuejs.org/guide/essentials/history-mode.html#example-server-configurations for more information on how to properly deploy with history mode to server.

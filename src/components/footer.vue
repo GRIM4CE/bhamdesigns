@@ -16,7 +16,6 @@ export default {}
 
 .footer-clearfix {
   height: $footer-height;
-  margin-top: $gutter;
 }
 
 .footer {
