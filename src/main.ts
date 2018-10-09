@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
+
+// @ts-ignore
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import { faBars } from '@fortawesome/pro-solid-svg-icons'
