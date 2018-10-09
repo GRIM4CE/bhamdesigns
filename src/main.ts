@@ -6,10 +6,10 @@ import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import { faBars } from '@fortawesome/pro-solid-svg-icons'
+import { faBars, faEnvelope } from '@fortawesome/pro-solid-svg-icons'
 import { faLinkedinIn, faGithub, faNpm, faStackOverflow } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faBars, faLinkedinIn, faGithub, faNpm, faStackOverflow)
+library.add(faBars, faEnvelope, faLinkedinIn, faGithub, faNpm, faStackOverflow)
 
 Vue.component('fa', FontAwesomeIcon)
 
