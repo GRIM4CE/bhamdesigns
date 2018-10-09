@@ -5,7 +5,7 @@
     </div>
     <div class="sidebar-bio-content">
       <img class="sidebar-bio-headshot" src="../assets/headshot.jpg" alt="Jon Leibham Headshot">
-      <p>Jon Leibham is a Chicago-based freelance Graphic/Web Designer. He has worked on many things great and small. He takes pride in staying sharp, always looking to learn a new skill. He primarily works as UX/UI front-end web designer but has taken on many other roles over the years. His workflow takes place mainly in a node.js environment allowing him to deliver compressed, clean, and correct code to client or team. When he's not locked in the void, he enjoys camping, cooking, painting, and listening to music.</p>
+      <p>Jon Leibham is a Chicago-based freelance Frontend Developer & UX/UI Designer. He primarily works with Vue.js, Vuex, Node.js, Webpack & Scss but has used many other language and libraries over the years. He takes pride in staying sharp, always looking to learn a new skill. When he's not locked in the void, he enjoys cooking, oil painting, caring for plants, camping & indulging in whatever his great city has to offer.</p>
     </div>
 
     <ul class="sidebar-media-list">
