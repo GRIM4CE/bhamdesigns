@@ -19,8 +19,8 @@ export default {
       this.$router.push({
         name: 'gallery',
         params: {
-          gallery: title
-        }
+          gallery: title,
+        },
       })
     },
   },
@@ -32,7 +32,7 @@ export default {
   mounted() {
     const img = document.querySelector(`img[alt='${this.project.title}']`)
     img.setAttribute('src', img.getAttribute('data-src'))
-    img.onload = function() {
+    img.onload = () => {
       img.removeAttribute('data-src')
     }
   },

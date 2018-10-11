@@ -2,16 +2,24 @@
   <footer>
     <div class="footer-clearfix"></div>
     <div class="footer">
-      <h6 class="copyright">© {{currentYear}} | <span class="copyright-brand">Bham Design</span> | All Rights Reserved</h6>
+      <h6 class="copyright">© {{currentYear}} | <span class="copyright-brand" @click="route(null)">Bham Design</span> | All Rights Reserved</h6>
     </div>
   </footer>
 </template>
 
 <script>
+import store from '@/store'
+
 export default {
   computed: {
     currentYear() {
       return (new Date()).getFullYear()
+    },
+  },
+  methods: {
+    route(category) {
+      store.commit('setCategory', category)
+      this.$router.push('/')
     },
   },
 }
@@ -41,6 +49,7 @@ export default {
 
 .copyright-brand {
   color: $primary400;
+  cursor: pointer;
 
   &:hover {
     color: $secondary400;
