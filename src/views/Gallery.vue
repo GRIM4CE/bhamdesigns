@@ -2,7 +2,7 @@
 <section class="gallery-section">
   <h1 class="gallery-title">{{gallery.title}}</h1>
   <div class="gallery-container">
-    <img class="gallery-img" v-for="(image, index) in gallery.images" :key="index" :src="'../static/galleries' + image" alt="">
+    <img class="gallery-img" v-for="(image, index) in gallery.images" :key="index" src="'../static/galleries' + image" :alt="image">
   </div>
   <div class="gallery-description-container">
     <p class="gallery-description">{{gallery.description}}</p>
@@ -26,6 +26,14 @@ export default {
         this.loading = false
       })
   },
+  // mounted() {
+  //   [].forEach.call(document.querySelectorAll('img[data-src]'),    function(img) {
+  //     img.setAttribute('src', img.getAttribute('data-src'));
+  //     img.onload = function() {
+  //       img.removeAttribute('data-src');
+  //     };
+  //   });
+  // },
 }
 </script>
 

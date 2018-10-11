@@ -1,4 +1,5 @@
 .card {
+  background-color: $primary200;
   display: block;
   position: relative;
   max-width: 250px;
@@ -25,6 +26,13 @@
   width: 100%;
   max-width: 250px;
   max-height: 250px;
+  opacity: 1;
+  transition: .2s opacity;
+
+}
+
+.card-image[data-src] {
+  opacity: 0;
 }
 
 .card-title {
