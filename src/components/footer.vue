@@ -2,13 +2,19 @@
   <footer>
     <div class="footer-clearfix"></div>
     <div class="footer">
-      <h6 class="copyright">© 2017 | <span class="copyright-brand">Bham Design</span> | All Rights Reserved</h6>
+      <h6 class="copyright">© {{currentYear}} | <span class="copyright-brand">Bham Design</span> | All Rights Reserved</h6>
     </div>
   </footer>
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    currentYear() {
+      return (new Date()).getFullYear()
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
