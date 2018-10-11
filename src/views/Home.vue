@@ -25,8 +25,8 @@ export default {
   },
   created() {
     store.dispatch('fetchProjects')
-      .then(() => {
-      })
+      // .then(() => {
+      // })
   },
 }
 </script>

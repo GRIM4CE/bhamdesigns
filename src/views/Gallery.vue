@@ -21,7 +21,7 @@ export default {
   },
   created() {
     this.loading = true
-    store.dispatch('fetchGallery', this.$route.params.id)
+    store.dispatch('fetchGallery', this.$route.params.gallery)
       .then(() => {
         this.loading = false
       })
