@@ -26,7 +26,7 @@ export default {
 <template>
   <nuxt-link
     class="card"
-    tabindex="1"
+    tabindex="0"
     :to="`gallery/${project.title.toLowerCase().split(/\s+/).join('-')}`"
   >
     <div class="card-opacity">

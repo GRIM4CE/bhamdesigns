@@ -15,7 +15,7 @@ export default {
     <div class="header">
       <a
         class="header-link"
-        tabindex="1"
+        tabindex="0"
         @click="route(null)"
         @keyup.enter="route(null)"
       >
@@ -26,7 +26,7 @@ export default {
           <li class="header-li">
             <a
               class="header-link"
-              tabindex="1"
+              tabindex="0"
               @keyup.enter="route('design')"
               @click="route('design')"
               >Design</a
@@ -35,7 +35,7 @@ export default {
           <li class="header-li">
             <a
               class="header-link"
-              tabindex="1"
+              tabindex="0"
               @keyup.enter="route('web-design')"
               @click="route('web-design')"
               >UX/UI</a
@@ -44,7 +44,7 @@ export default {
           <li class="header-li">
             <a
               class="header-link"
-              tabindex="1"
+              tabindex="0"
               @keyup.enter="route('photography')"
               @click="route('photography')"
               >Photography</a
@@ -53,7 +53,7 @@ export default {
           <li class="header-li">
             <a
               class="header-link"
-              tabindex="1"
+              tabindex="0"
               @keyup.enter="route('fine-art')"
               @click="route('fine-art')"
               >Fine-Art</a
