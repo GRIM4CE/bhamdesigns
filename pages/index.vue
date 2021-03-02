@@ -35,14 +35,16 @@ export default {
 <style lang="scss" scoped>
 .card-container {
   display: grid;
+  margin-top: 1rem;
   padding: 0 $gutter / 2;
-  grid-template-columns: repeat(3, minmax(0, 250px));
+  grid-template-columns: repeat(2, minmax(0, 250px));
   grid-row-gap: $gutter / 2;
   grid-column-gap: $gutter / 2;
 }
 
 @media all and (min-width: 37.5rem) {
   .card-container {
+    margin-top: 0;
     grid-row-gap: $gutter;
     grid-column-gap: $gutter;
     padding: $gutter / 2 $gutter;

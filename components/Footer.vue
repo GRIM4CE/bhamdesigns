@@ -37,6 +37,7 @@ export default {
 }
 
 .copyright {
+  font-size: 13px;
   color: $black;
 }
 
