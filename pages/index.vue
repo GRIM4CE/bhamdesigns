@@ -2,8 +2,8 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  asyncData({ store }) {
-    store.dispatch('fetchProjects')
+  async asyncData({ store }) {
+    await store.dispatch('fetchProjects')
   },
   computed: {
     ...mapGetters({ projects: 'projects' }),

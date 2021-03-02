@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -14,6 +16,23 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  },
+
+  generate: {
+    routes() {
+      return axios
+        .get(`https://bham-9c586.firebaseio.com/projects.json`)
+        .then((res) => {
+          return res.data.map((project) => {
+            return {
+              route:
+                '/gallery/' +
+                project.title.toLowerCase().split(/\s+/).join('-'),
+              payload: project,
+            }
+          })
+        })
+    },
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

@@ -2,8 +2,9 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  asyncData({ store, route }) {
-    store.dispatch('fetchGallery', route.params.gallery)
+  async asyncData({ store, route }) {
+    console.log(route)
+    await store.dispatch('fetchGallery', route.params.title)
   },
   computed: {
     ...mapGetters({ gallery: 'gallery' }),
@@ -12,7 +13,7 @@ export default {
 </script>
 
 <template>
-  <section class="gallery-section">
+  <section v-if="gallery" class="gallery-section">
     <h1 class="gallery-title">{{ gallery.title }}</h1>
     <div class="gallery-container">
       <img

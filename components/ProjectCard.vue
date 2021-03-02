@@ -15,10 +15,8 @@ export default {
     route(title) {
       title = title.toLowerCase().split(/\s+/).join('-')
       this.$router.push({
-        name: 'gallery',
-        params: {
-          gallery: title,
-        },
+        path: `gallery/${title}`,
+        params: { title },
       })
     },
   },
