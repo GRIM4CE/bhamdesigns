@@ -27,6 +27,7 @@ export default {
       <img
         v-for="(image, index) in gallery.images"
         :key="index"
+        load="lazy"
         class="gallery-img"
         :src="'/img/galleries' + image"
       />
