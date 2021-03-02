@@ -77,9 +77,10 @@ export default {
           class="sidebar-media-link"
           :href="link"
           target="_blank"
+          :aria-label="name"
           :tabindex="isActive ? 1 : -1"
         >
-          <DIcon :name="name" :aria-label="name" />
+          <DIcon :name="name" />
         </a>
       </li>
     </ul>
