@@ -41,7 +41,12 @@ export default {
 
 <template lang="html">
   <aside class="sidebar" :class="{ active: isActive }">
-    <div class="sidebar-tab" @click="toggleBio">
+    <div
+      class="sidebar-tab"
+      tabindex="1"
+      @keyup.enter="toggleBio"
+      @click="toggleBio"
+    >
       <DIcon class="sidebar-tab-icon" name="menu" />
     </div>
     <div class="sidebar-bio-content">
@@ -68,7 +73,13 @@ export default {
         :key="i"
         class="sidebar-media-list-item"
       >
-        <a class="sidebar-media-link" :href="link" target="_blank">
+        <a
+          class="sidebar-media-link"
+          :href="link"
+          target="_blank"
+          :tabindex="isActive ? 1 : -1"
+        >
+          <span class="sidebar-media-link-text">{{ name }}</span>
           <DIcon :name="name" />
         </a>
       </li>
@@ -153,5 +164,9 @@ export default {
   &:hover {
     color: $secondary400;
   }
+}
+
+.sidebar-media-link-text {
+  display: none;
 }
 </style>

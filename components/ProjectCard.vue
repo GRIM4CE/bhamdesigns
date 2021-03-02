@@ -15,7 +15,7 @@ export default {
     route(title) {
       title = title.toLowerCase().split(/\s+/).join('-')
       this.$router.push({
-        path: `gallery/${title}`,
+        path: `${title}`,
         params: { title },
       })
     },
@@ -24,13 +24,17 @@ export default {
 </script>
 
 <template>
-  <div class="card" @click="route(project.title)">
+  <nuxt-link
+    class="card"
+    tabindex="1"
+    :to="`gallery/${project.title.toLowerCase().split(/\s+/).join('-')}`"
+  >
     <div class="card-opacity">
       <span class="card-title">{{ project.title }}</span>
       <span class="card-year">{{ project.year }}</span>
     </div>
     <img class="card-image" :src="thumbnail" :alt="project.title" load="lazy" />
-  </div>
+  </nuxt-link>
 </template>
 
 <style lang="scss" scoped>
@@ -44,8 +48,6 @@ export default {
   border-radius: 3px;
   overflow: hidden;
   cursor: pointer;
-
-  --aspect-ratio: 250/250;
 }
 
 .card-opacity {

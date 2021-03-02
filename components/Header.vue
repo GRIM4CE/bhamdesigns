@@ -13,14 +13,53 @@ export default {
   <header>
     <div class="header-clearfix"></div>
     <div class="header">
-      <a class="header-link" @click="route(null)">
+      <a
+        class="header-link"
+        tabindex="1"
+        @click="route(null)"
+        @keyup.enter="route(null)"
+      >
         <img class="header-logo" src="/logo/logo.svg" alt="Bham Designs" />
       </a>
       <nav class="header-nav">
-        <a class="header-link" @click="route('design')">Design</a>
-        <a class="header-link" @click="route('web-design')">UX/UI</a>
-        <a class="header-link" @click="route('photography')">Photography</a>
-        <a class="header-link" @click="route('fine-art')">Fine-Art</a>
+        <ul class="header-ul">
+          <li class="header-li">
+            <a
+              class="header-link"
+              tabindex="1"
+              @keyup.enter="route('design')"
+              @click="route('design')"
+              >Design</a
+            >
+          </li>
+          <li class="header-li">
+            <a
+              class="header-link"
+              tabindex="1"
+              @keyup.enter="route('web-design')"
+              @click="route('web-design')"
+              >UX/UI</a
+            >
+          </li>
+          <li class="header-li">
+            <a
+              class="header-link"
+              tabindex="1"
+              @keyup.enter="route('photography')"
+              @click="route('photography')"
+              >Photography</a
+            >
+          </li>
+          <li class="header-li">
+            <a
+              class="header-link"
+              tabindex="1"
+              @keyup.enter="route('fine-art')"
+              @click="route('fine-art')"
+              >Fine-Art</a
+            >
+          </li>
+        </ul>
       </nav>
     </div>
   </header>
@@ -56,13 +95,20 @@ export default {
   margin-left: auto;
 }
 
-.header-link {
+.header-ul {
+  display: flex;
+  padding: 0;
+}
+
+.header-li {
   padding-left: 1rem;
+}
+
+.header-link {
   color: $white;
   font-family: $head-font;
   text-decoration: none;
   cursor: pointer;
-  user-select: none;
 
   &:hover {
     color: $secondary400;
