@@ -5,12 +5,6 @@ export default {
       return new Date().getFullYear()
     },
   },
-  methods: {
-    route(category) {
-      this.store.commit('setCategory', category)
-      this.$router.push('/')
-    },
-  },
 }
 </script>
 
@@ -19,8 +13,7 @@ export default {
     <div class="footer-clearfix"></div>
     <div class="footer">
       <h6 class="copyright">
-        © {{ currentYear }} |
-        <span class="copyright-brand" @click="route(null)">Bham Design</span> |
+        © {{ currentYear }} | <span class="copyright-brand">Bham Design</span> |
         All Rights Reserved
       </h6>
     </div>
@@ -40,19 +33,14 @@ export default {
   justify-content: center;
   width: 100%;
   height: $footer-height;
-  background-color: rgba($white, 0.4);
+  background-color: $white;
 }
 
 .copyright {
-  color: rgba($primary400, 0.5);
+  color: $black;
 }
 
 .copyright-brand {
-  color: $primary400;
-  cursor: pointer;
-
-  &:hover {
-    color: $secondary400;
-  }
+  color: $primary200;
 }
 </style>

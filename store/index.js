@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const state = () => ({
-  projects: [],
+  projects: new Array(18),
   gallery: [],
   category: '',
 })

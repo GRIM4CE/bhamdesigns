@@ -46,6 +46,8 @@ export default {
     </div>
     <div class="sidebar-bio-content">
       <img
+        width="400"
+        height="200"
         class="sidebar-bio-headshot"
         src="/img/headshot.jpg"
         alt="Jon Leibham Headshot"

@@ -44,6 +44,8 @@ export default {
   border-radius: 3px;
   overflow: hidden;
   cursor: pointer;
+
+  --aspect-ratio: 250/250;
 }
 
 .card-opacity {
