@@ -51,11 +51,12 @@ export default {
     </div>
     <div class="sidebar-bio-content">
       <img
-        width="400"
-        height="250"
+        width="302"
+        height="189"
         class="sidebar-bio-headshot"
-        src="/img/headshot.jpg"
+        src="/img/headshot.webp"
         alt="Jon Leibham Headshot"
+        load="lazy"
       />
       <p>
         Jon Leibham is a Milwauke-based Frontend Architect. He primarily works
