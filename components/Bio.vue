@@ -51,7 +51,7 @@ export default {
     </div>
     <div class="sidebar-bio-content">
       <img
-        width="400"
+        width="302"
         height="200"
         class="sidebar-bio-headshot"
         src="/img/headshot.jpg"
@@ -78,6 +78,7 @@ export default {
           :href="link"
           target="_blank"
           :aria-label="name"
+          rel="noreferrer"
           :tabindex="isActive ? 1 : -1"
         >
           <DIcon :name="name" />
