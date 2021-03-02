@@ -1,10 +1,18 @@
 <script>
 import { mapGetters } from 'vuex'
+import { generateHead } from '@/assets/js/head.js'
 
 export default {
   async asyncData({ store, route }) {
-    console.log(route)
     await store.dispatch('fetchGallery', route.params.title)
+  },
+  head() {
+    const title = `Jon Leibham | Frontend Architect | ${this.gallery.title}`
+    return generateHead({
+      title,
+      description: this.gallery.description,
+      image: this.gallery.images[0],
+    })
   },
   computed: {
     ...mapGetters({ gallery: 'gallery' }),

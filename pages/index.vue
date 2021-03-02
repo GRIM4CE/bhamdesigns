@@ -1,9 +1,17 @@
 <script>
 import { mapGetters } from 'vuex'
+import { generateHead } from '@/assets/js/head.js'
 
 export default {
   async asyncData({ store }) {
     await store.dispatch('fetchProjects')
+  },
+  head() {
+    const title = 'Jon Leibham | Frontend Architect'
+    const description = `Jon Leibham is a Milwauke-based Frontend Architect.
+    He primarily works with Node, Vue, Nuxt, Vuex, Apollo,
+    JS(ES6) Typescript, and SCSS.`
+    return generateHead({ title, description, image: '/img/headshot.jpg' })
   },
   computed: {
     ...mapGetters({ projects: 'projects' }),

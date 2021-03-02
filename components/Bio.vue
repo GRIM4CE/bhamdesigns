@@ -51,12 +51,12 @@ export default {
         alt="Jon Leibham Headshot"
       />
       <p>
-        Jon Leibham is a Chicago-based freelance Frontend Developer & UX/UI
-        Designer. He primarily works with Vue.js, Vuex, Node.js, Webpack & Scss
-        but has used many other language and libraries over the years. He takes
-        pride in staying sharp, always looking to learn a new skill. When he's
-        not locked in the void, he enjoys cooking, oil painting, caring for
-        plants, camping & indulging in whatever his great city has to offer.
+        Jon Leibham is a Milwauke-based Frontend Architect. He primarily works
+        with Node, Vue, Nuxt, Vuex, Apollo, JS(ES6) Typescript, and SCSS but has
+        used many other language and libraries over the years. He takes pride in
+        staying sharp, always looking to learn a new skill. When he's not locked
+        in the void, he enjoys cooking, oil painting, caring for plants, camping
+        & indulging in whatever his great city has to offer.
       </p>
     </div>
 
