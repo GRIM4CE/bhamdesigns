@@ -2,11 +2,11 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  asyncData({ store }) {
+    store.dispatch('fetchProjects')
+  },
   computed: {
     ...mapGetters({ projects: 'projects' }),
-  },
-  mounted() {
-    this.$store.dispatch('fetchProjects')
   },
 }
 </script>

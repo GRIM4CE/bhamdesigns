@@ -7,6 +7,7 @@ export const state = () => ({
 })
 
 export const getters = {
+  gallery: (state) => state.gallery,
   projects: (state) =>
     state.category
       ? state.projects.filter((project) =>

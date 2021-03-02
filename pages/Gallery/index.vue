@@ -1,18 +1,12 @@
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  data() {
-    return {
-      loading: true,
-    }
+  asyncData({ store, route }) {
+    store.dispatch('fetchGallery', route.params.gallery)
   },
   computed: {
-    gallery() {
-      return this.$store.state.gallery
-    },
-  },
-  async mounted() {
-    await this.$store.dispatch('fetchGallery', this.$route.params.gallery)
-    this.loading = false
+    ...mapGetters({ gallery: 'gallery' }),
   },
 }
 </script>
