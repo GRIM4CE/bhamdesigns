@@ -42,13 +42,15 @@ export default {
         cache,
       })
       const res = await client.query({ query: GET_PROJECTS })
-      return res.data.projects.map((project) => {
-        return {
-          route:
-            '/gallery/' + project.title.toLowerCase().split(/\s+/).join('-'),
-          payload: project,
-        }
-      })
+      return res.data.projects
+        .map((project) => {
+          if (!project.slug) return null
+          return {
+            route: '/gallery/' + project.slug.path,
+            payload: project,
+          }
+        })
+        .filter((route) => route)
     },
   },
 

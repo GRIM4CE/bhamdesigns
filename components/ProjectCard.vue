@@ -38,7 +38,7 @@ export default {
   <a
     class="card"
     :class="project.slug ? 'clickable' : ''"
-    tabindex="0"
+    :tabindex="project.slug ? 0 : -1"
     @click="route(project.slug)"
   >
     <div class="card-opacity">
