@@ -23,11 +23,11 @@ export default {
     },
   },
   methods: {
-    route(title) {
-      const slug = title.toLowerCase().split(/\s+/).join('-')
+    route(slug) {
+      if (!slug) return
       this.$router.push({
-        path: `${slug}`,
-        params: { slug },
+        path: `gallery/${slug.path}`,
+        params: { slug: slug.path },
       })
     },
   },
@@ -35,17 +35,18 @@ export default {
 </script>
 
 <template>
-  <nuxt-link
+  <a
     class="card"
+    :class="project.slug ? 'clickable' : ''"
     tabindex="0"
-    :to="`gallery/${project.title.toLowerCase().split(/\s+/).join('-')}`"
+    @click="route(project.slug)"
   >
     <div class="card-opacity">
       <span class="card-title">{{ project.title }}</span>
       <span class="card-year">{{ year }}</span>
     </div>
     <img class="card-image" :src="thumbnail" :alt="project.title" load="lazy" />
-  </nuxt-link>
+  </a>
 </template>
 
 <style lang="scss" scoped>
@@ -58,7 +59,10 @@ export default {
   padding-bottom: 100%;
   border-radius: 3px;
   overflow: hidden;
-  cursor: pointer;
+
+  &.clickable {
+    cursor: pointer;
+  }
 }
 
 .card-opacity {

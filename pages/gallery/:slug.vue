@@ -1,5 +1,4 @@
 <script>
-import { mapGetters } from 'vuex'
 import { generateHead } from '@/assets/js/head.js'
 import { GET_GALLERY } from '@/assets/js/graphql.js'
 
@@ -13,7 +12,6 @@ export default {
       const gallery = res.data.gallery
       return { gallery }
     } catch (e) {
-      console.log(e)
       return {}
     }
   },
@@ -27,7 +25,6 @@ export default {
     })
   },
   computed: {
-    ...mapGetters({ gallery: 'gallery' }),
     hasGallery() {
       return Object.keys(this.gallery).length !== 0
     },

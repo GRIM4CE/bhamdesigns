@@ -6,6 +6,10 @@ export const GET_PROJECTS = gql`
       title
       category
       date
+      slug {
+        pageType
+        path
+      }
       image {
         path
         fileType

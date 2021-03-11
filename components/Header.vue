@@ -1,8 +1,8 @@
 <script>
 export default {
   methods: {
-    route(category) {
-      this.$store.commit('setCategory', category)
+    route() {
+      // console.log(category)
       this.$router.push('/')
     },
   },

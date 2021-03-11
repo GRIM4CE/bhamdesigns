@@ -11,7 +11,7 @@ export default {
       const projects = res.data.projects || []
       return { projects }
     } catch (e) {
-      return {}
+      return []
     }
   },
   data() {
