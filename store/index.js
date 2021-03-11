@@ -1,4 +1,5 @@
 import axios from 'axios'
+import galleries from '@/assets/gallery'
 
 export const state = () => ({
   projects: new Array(18),
@@ -23,19 +24,15 @@ export const actions = {
         `https://bham-9c586.firebaseio.com/projects.json`
       )
       commit('setProjects', res.data)
-    } catch (e) {
-      console.log(e)
-    }
+    } catch (e) {}
   },
-  async fetchGallery({ commit }, title) {
+  fetchGallery({ commit }, title) {
     try {
-      const res = await axios.get(
-        `https://bham-9c586.firebaseio.com/galleries/${title}.json`
-      )
-      commit('setGallery', res.data)
-    } catch (e) {
-      console.log(e)
-    }
+      // const res = await axios.get(
+      //   `https://bham-9c586.firebaseio.com/galleries/${title}.json`
+      // )
+      commit('setGallery', galleries[title])
+    } catch (e) {}
   },
 }
 

@@ -8,15 +8,26 @@ export default {
   },
   computed: {
     thumbnail() {
-      return '/img/thumbnails/' + this.project.thumbnail
+      return (
+        '/img/thumbnails/' +
+        this.project.image.path +
+        this.project.image.fileType
+      )
+    },
+    year() {
+      const date = new Date(this.project.date * 1000)
+      return date.toLocaleDateString(undefined, {
+        month: 'long',
+        year: 'numeric',
+      })
     },
   },
   methods: {
     route(title) {
-      title = title.toLowerCase().split(/\s+/).join('-')
+      const slug = title.toLowerCase().split(/\s+/).join('-')
       this.$router.push({
-        path: `${title}`,
-        params: { title },
+        path: `${slug}`,
+        params: { slug },
       })
     },
   },
@@ -31,7 +42,7 @@ export default {
   >
     <div class="card-opacity">
       <span class="card-title">{{ project.title }}</span>
-      <span class="card-year">{{ project.year }}</span>
+      <span class="card-year">{{ year }}</span>
     </div>
     <img class="card-image" :src="thumbnail" :alt="project.title" load="lazy" />
   </nuxt-link>

@@ -1,6 +1,9 @@
 import axios from 'axios'
 
 export default {
+  privateRuntimeConfig: {
+    apolloKey: process.env.APOLLO_API_KEY,
+  },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -41,6 +44,12 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
 
+  apollo: {
+    clientConfigs: {
+      default: '~/app/apollo.js',
+    },
+  },
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -54,7 +63,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['@nuxtjs/apollo'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
