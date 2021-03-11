@@ -1,4 +1,10 @@
-import axios from 'axios'
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+} from '@apollo/client/core'
+import fetch from 'cross-fetch'
+import { GET_PROJECTS } from './assets/js/graphql.js'
 
 export default {
   privateRuntimeConfig: {
@@ -22,19 +28,28 @@ export default {
   },
 
   generate: {
-    routes() {
-      return axios
-        .get(`https://bham-9c586.firebaseio.com/projects.json`)
-        .then((res) => {
-          return res.data.map((project) => {
-            return {
-              route:
-                '/gallery/' +
-                project.title.toLowerCase().split(/\s+/).join('-'),
-              payload: project,
-            }
-          })
-        })
+    routes: async () => {
+      // Currently need to initiate apollo inside of generate for dynamic generated routes
+      // Potential for refactor at a later date.
+      const httpLink = createHttpLink({
+        uri: process.env.APOLLO_PATH,
+        fetch,
+        headers: { 'x-api_key': process.env.APOLLO_API_KEY },
+      })
+      const cache = new InMemoryCache()
+      const client = new ApolloClient({
+        link: httpLink,
+        cache,
+      })
+      const res = await client.query({ query: GET_PROJECTS })
+      console.log(res)
+      return res.data.projects.map((project) => {
+        return {
+          route:
+            '/gallery/' + project.title.toLowerCase().split(/\s+/).join('-'),
+          payload: project,
+        }
+      })
     },
   },
 
