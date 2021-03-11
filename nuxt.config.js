@@ -42,7 +42,6 @@ export default {
         cache,
       })
       const res = await client.query({ query: GET_PROJECTS })
-      console.log(res)
       return res.data.projects.map((project) => {
         return {
           route:
