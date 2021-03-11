@@ -17,7 +17,7 @@ export default {
   },
   head() {
     if (!this.hasGallery) return
-    const title = `Jon Leibham | Frontend Architect | ${this.gallery.title}`
+    const title = `Jon Leibham | Web Engineer | ${this.gallery.title}`
     return generateHead({
       title,
       description: this.gallery.description,

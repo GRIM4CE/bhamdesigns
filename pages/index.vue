@@ -20,7 +20,7 @@ export default {
     }
   },
   head() {
-    const title = 'Jon Leibham | Frontend Architect'
+    const title = 'Jon Leibham | Web Engineer'
     const description = `Jon Leibham is a Milwaukee-based Frontend Architect.
     He primarily works with Node, Vue, Nuxt, Vuex, Apollo,
     JS(ES6) Typescript, and SCSS.`
