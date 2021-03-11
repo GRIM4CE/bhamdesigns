@@ -1,6 +1,15 @@
-import axios from 'axios'
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+} from '@apollo/client/core'
+import fetch from 'cross-fetch'
+import { GET_PROJECTS } from './assets/js/graphql.js'
 
 export default {
+  privateRuntimeConfig: {
+    apolloKey: process.env.APOLLO_API_KEY,
+  },
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -19,19 +28,29 @@ export default {
   },
 
   generate: {
-    routes() {
-      return axios
-        .get(`https://bham-9c586.firebaseio.com/projects.json`)
-        .then((res) => {
-          return res.data.map((project) => {
-            return {
-              route:
-                '/gallery/' +
-                project.title.toLowerCase().split(/\s+/).join('-'),
-              payload: project,
-            }
-          })
+    routes: async () => {
+      // Currently need to initiate apollo inside of generate for dynamic generated routes
+      // Potential for refactor at a later date.
+      const httpLink = createHttpLink({
+        uri: process.env.APOLLO_PATH,
+        fetch,
+        headers: { 'x-api_key': process.env.APOLLO_API_KEY },
+      })
+      const cache = new InMemoryCache()
+      const client = new ApolloClient({
+        link: httpLink,
+        cache,
+      })
+      const res = await client.query({ query: GET_PROJECTS })
+      return res.data.projects
+        .map((project) => {
+          if (!project.slug) return null
+          return {
+            route: '/gallery/' + project.slug.path,
+            payload: project,
+          }
         })
+        .filter((route) => route)
     },
   },
 
@@ -40,6 +59,12 @@ export default {
   styleResources: { scss: ['@/assets/scss/resources/index.scss'] },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
+
+  apollo: {
+    clientConfigs: {
+      default: '~/app/apollo.js',
+    },
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -54,7 +79,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['@nuxtjs/apollo'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

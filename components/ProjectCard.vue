@@ -8,15 +8,26 @@ export default {
   },
   computed: {
     thumbnail() {
-      return '/img/thumbnails/' + this.project.thumbnail
+      return (
+        '/img/thumbnails/' +
+        this.project.image.path +
+        this.project.image.fileType
+      )
+    },
+    year() {
+      const date = new Date(this.project.date * 1000)
+      return date.toLocaleDateString(undefined, {
+        month: 'long',
+        year: 'numeric',
+      })
     },
   },
   methods: {
-    route(title) {
-      title = title.toLowerCase().split(/\s+/).join('-')
+    route(slug) {
+      if (!slug) return
       this.$router.push({
-        path: `${title}`,
-        params: { title },
+        path: `gallery/${slug.path}`,
+        params: { slug: slug.path },
       })
     },
   },
@@ -24,17 +35,18 @@ export default {
 </script>
 
 <template>
-  <nuxt-link
+  <a
     class="card"
-    tabindex="0"
-    :to="`gallery/${project.title.toLowerCase().split(/\s+/).join('-')}`"
+    :class="project.slug ? 'clickable' : ''"
+    :tabindex="project.slug ? 0 : -1"
+    @click="route(project.slug)"
   >
     <div class="card-opacity">
       <span class="card-title">{{ project.title }}</span>
-      <span class="card-year">{{ project.year }}</span>
+      <span class="card-year">{{ year }}</span>
     </div>
     <img class="card-image" :src="thumbnail" :alt="project.title" load="lazy" />
-  </nuxt-link>
+  </a>
 </template>
 
 <style lang="scss" scoped>
@@ -47,7 +59,10 @@ export default {
   padding-bottom: 100%;
   border-radius: 3px;
   overflow: hidden;
-  cursor: pointer;
+
+  &.clickable {
+    cursor: pointer;
+  }
 }
 
 .card-opacity {
