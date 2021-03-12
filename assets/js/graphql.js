@@ -9,6 +9,7 @@ export const GET_PROJECTS = gql`
       slug {
         pageType
         path
+        noIndex
       }
       image {
         path
@@ -21,9 +22,14 @@ export const GET_PROJECTS = gql`
 export const GET_GALLERY = gql`
   query gallery($slug: String) {
     gallery(slug: $slug) {
-      title
       description
       projectId
+      project {
+        title
+        slug {
+          noIndex
+        }
+      }
       images {
         fileType
         count
