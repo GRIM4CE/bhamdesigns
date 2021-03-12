@@ -3,10 +3,16 @@ import { generateHead } from '@/assets/js/head.js'
 import { GET_PROJECTS } from '@/assets/js/graphql.js'
 
 export default {
-  async asyncData({ app }) {
+  async asyncData({ app, route }) {
     try {
+      const variables = {}
+      if (route.query.sort) {
+        const filter = route.query.sort.toUpperCase().replace('-', '')
+        variables.filter = filter
+      }
       const res = await app.apolloProvider.defaultClient.query({
         query: GET_PROJECTS,
+        variables,
       })
       const projects = res.data.projects || []
       return { projects }

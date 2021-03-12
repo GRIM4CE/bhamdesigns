@@ -1,9 +1,12 @@
 <script>
 export default {
   methods: {
-    route() {
-      // console.log(category)
-      this.$router.push('/')
+    route(sort) {
+      const query = sort ? { sort } : {}
+      this.$router.push({
+        path: '/',
+        query,
+      })
     },
   },
 }
