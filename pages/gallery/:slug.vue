@@ -17,11 +17,12 @@ export default {
   },
   head() {
     if (!this.hasGallery) return
-    const title = `Jon Leibham | Web Engineer | ${this.gallery.title}`
+    const title = `Jon Leibham | Web Engineer | ${this.gallery.project.title}`
     return generateHead({
       title,
       description: this.gallery.description,
       image: this.galleryImages[0],
+      noIndex: this.gallery.project.slug.noIndex,
     })
   },
   computed: {
@@ -42,7 +43,7 @@ export default {
   <section v-if="hasGallery" class="gallery-section">
     <aside class="gallery-aside">
       <div class="gallery-wrapper">
-        <h1 class="gallery-title">{{ gallery.title }}</h1>
+        <h1 class="gallery-title">{{ gallery.project.title }}</h1>
         <p class="gallery-description">{{ gallery.description }}</p>
       </div>
     </aside>

@@ -9,8 +9,10 @@ export default {
         query: GET_PROJECTS,
       })
       const projects = res.data.projects || []
+      console.log(projects)
       return { projects }
     } catch (e) {
+      console.log(e)
       return []
     }
   },
