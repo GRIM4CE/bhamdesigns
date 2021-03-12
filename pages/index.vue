@@ -5,8 +5,14 @@ import { GET_PROJECTS } from '@/assets/js/graphql.js'
 export default {
   async asyncData({ app }) {
     try {
+      // const variables = {}
+      // if (route.query.sort) {
+      //   const filter = route.query.sort.toUpperCase().replace('-', '')
+      //   variables.filter = filter
+      // }
       const res = await app.apolloProvider.defaultClient.query({
         query: GET_PROJECTS,
+        // variables,
       })
       const projects = res.data.projects || []
       return { projects }
@@ -26,15 +32,26 @@ export default {
     JS(ES6) Typescript, and SCSS.`
     return generateHead({ title, description, image: '/img/headshot.jpg' })
   },
+  computed: {
+    filteredProjects() {
+      if (this.$route.query.sort && this.projects.length !== 0) {
+        const filter = this.$route.query.sort.replace('-', '').toUpperCase()
+        return this.projects.filter(
+          (project) => project.category && project.category.includes(filter)
+        )
+      }
+      return this.projects
+    },
+  },
 }
 </script>
 
 <template>
   <section>
     <Bio />
-    <div v-if="projects" class="card-container">
+    <div v-if="filteredProjects" class="card-container">
       <ProjectCard
-        v-for="(project, index) in projects"
+        v-for="(project, index) in filteredProjects"
         :key="index"
         :project="project"
       ></ProjectCard>

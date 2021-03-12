@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export const GET_PROJECTS = gql`
-  query projects {
-    projects(count: 50) {
+  query projects($filter: String) {
+    projects(filter: $filter, count: 50) {
       title
       category
       date
