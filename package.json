@@ -12,6 +12,9 @@
     "lint": "yarn lint:js && yarn lint:style",
     "test": "jest"
   },
+  "engines": {
+    "node": "v14.15.5"
+  },
   "lint-staged": {
     "*.{js,vue}": "eslint",
     "*.{css,vue}": "stylelint"
