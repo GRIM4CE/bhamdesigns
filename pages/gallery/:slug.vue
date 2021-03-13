@@ -63,29 +63,53 @@ export default {
 <style lang="scss" scoped>
 .gallery-section {
   display: grid;
-  grid-template-columns: calc(100% - 500px) 500px;
-  margin: 3rem 2rem;
+
+  @include tablet {
+    grid-template-columns: calc(100% - 500px) 500px;
+    margin: 3rem 2rem;
+  }
 }
 
 .gallery-aside {
-  grid-row: 1;
-  grid-column: 2;
-}
+  margin: 0 0 2rem;
+  padding: 2rem 2rem 1rem;
+  background: $primary200;
+  color: $white;
 
-.gallery-title {
-  margin: 0 0 1rem;
+  @include tablet {
+    grid-row: 1;
+    grid-column: 2;
+    padding: 0;
+    background: transparent;
+    color: $black;
+  }
 }
 
 .gallery-wrapper {
-  position: fixed;
-  margin: 0 2rem;
+  margin: 0 0 2rem;
+
+  @include tablet {
+    margin: 0 2rem;
+    position: fixed;
+  }
 }
 
+.gallery-title {
+  color: $white;
+  margin: 0 0 1rem;
+
+  @include tablet {
+    color: $black;
+  }
+}
 .gallery-container {
   display: grid;
   justify-content: center;
-  grid-column: 1;
-  grid-row: 1;
+
+  @include tablet {
+    grid-column: 1;
+    grid-row: 1;
+  }
 }
 
 .gallery-img {
