@@ -14,6 +14,7 @@ export const GET_PROJECTS = gql`
       image {
         path
         fileType
+        fallbackFileType
       }
     }
   }

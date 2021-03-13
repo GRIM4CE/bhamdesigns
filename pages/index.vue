@@ -62,7 +62,9 @@ export default {
 <style lang="scss" scoped>
 .card-container {
   display: grid;
-  margin-top: 1rem;
+  max-width: 1200px;
+  justify-content: center;
+  margin: 1rem auto;
   padding: 0 $gutter / 2;
   grid-template-columns: repeat(2, minmax(0, 250px));
   grid-row-gap: $gutter / 2;
@@ -72,6 +74,7 @@ export default {
 @media all and (min-width: 37.5rem) {
   .card-container {
     margin-top: 0;
+    grid-template-columns: repeat(3, minmax(0, 250px));
     grid-row-gap: $gutter;
     grid-column-gap: $gutter;
     padding: $gutter / 2 $gutter;
@@ -90,24 +93,6 @@ export default {
   .card-container {
     padding: $gutter * 2 $gutter $gutter * 2 $gutter * 4;
     grid-template-columns: repeat(5, minmax(0, 250px));
-  }
-}
-
-@media all and (min-width: 78.125rem) {
-  .card-container {
-    grid-template-columns: repeat(6, minmax(0, 250px));
-  }
-}
-
-@media all and (min-width: 93.75rem) {
-  .card-container {
-    grid-template-columns: repeat(7, minmax(0, 250px));
-  }
-}
-
-@media all and (min-width: 100rem) {
-  .card-container {
-    grid-template-columns: repeat(8, minmax(0, 200px));
   }
 }
 </style>
