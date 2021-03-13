@@ -50,10 +50,11 @@ export default {
       <DIcon class="sidebar-tab-icon" name="menu" />
     </div>
     <div class="sidebar-bio-content">
-      <img
+      <DImg
         width="302"
         height="189"
         class="sidebar-bio-headshot"
+        fallback="jpeg"
         src="/img/headshot.webp"
         alt="Jon Leibham Headshot"
         load="lazy"

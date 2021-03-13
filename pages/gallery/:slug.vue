@@ -49,10 +49,10 @@ export default {
     </aside>
 
     <div class="gallery-container">
-      <img
+      <DImg
         v-for="(image, index) in galleryImages"
         :key="index"
-        load="lazy"
+        loading="lazy"
         class="gallery-img"
         :src="image"
       />

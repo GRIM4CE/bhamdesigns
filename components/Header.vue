@@ -70,27 +70,25 @@ export default {
 
 <style lang="scss" scoped>
 .header-clearfix {
-  height: $header-height;
+  height: $header-mobile-height;
 }
 
 .header {
-  display: grid;
+  display: flex;
   position: fixed;
   top: 0;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: $header-height;
-  padding: 0 2rem;
+  height: $header-mobile-height;
+  padding: 0 1rem;
   background-color: $primary400;
   z-index: 2;
-  grid-template-columns: 1fr;
   box-shadow: 0 2px 2px rgba($black, 0.6);
 }
 
 .header-logo {
-  width: 100%;
-  max-width: 200px;
+  width: 190px;
 }
 
 .header-nav {
@@ -108,6 +106,7 @@ export default {
 }
 
 .header-link {
+  display: inline;
   color: $white;
   font-family: $head-font;
   text-decoration: none;
@@ -119,7 +118,19 @@ export default {
 }
 
 @media all and (min-width: 37.5rem) {
+  .header-clearfix {
+    height: $header-height;
+  }
+
+  .header-logo {
+    width: 100%;
+    max-width: 200px;
+  }
+
   .header {
+    display: grid;
+    height: $header-height;
+    padding: 0 2rem;
     grid-template-columns: minmax(0, 200px) minmax(0, 1800px);
   }
 

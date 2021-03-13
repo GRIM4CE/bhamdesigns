@@ -6,13 +6,15 @@ export default {
       default: () => ({}),
     },
   },
+  data() {
+    return {
+      imageSrc: '',
+    }
+  },
   computed: {
     thumbnail() {
-      return (
-        '/img/thumbnails/' +
-        this.project.image.path +
-        this.project.image.fileType
-      )
+      const { fileType, path } = this.project.image
+      return `/img/thumbnails/${fileType}/${path}.${fileType}`
     },
     year() {
       const date = new Date(this.project.date * 1000)
@@ -45,7 +47,12 @@ export default {
       <span class="card-title">{{ project.title }}</span>
       <span class="card-year">{{ year }}</span>
     </div>
-    <img class="card-image" :src="thumbnail" :alt="project.title" load="lazy" />
+    <DImg
+      class="card-image"
+      :fallback="project.image.fallbackFileType"
+      :src="thumbnail"
+      :alt="project.title"
+    />
   </a>
 </template>
 
