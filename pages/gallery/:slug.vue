@@ -60,61 +60,64 @@ export default {
   </section>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .gallery-section {
   display: grid;
-
-  @include tablet {
-    grid-template-columns: calc(100% - 500px) 500px;
-    margin: 3rem 2rem;
-  }
 }
 
 .gallery-aside {
   margin: 0 0 2rem;
   padding: 2rem 2rem 1rem;
-  background: $primary200;
-  color: $white;
-
-  @include tablet {
-    grid-row: 1;
-    grid-column: 2;
-    padding: 0;
-    background: transparent;
-    color: $black;
-  }
+  background: var(--primary200);
+  color: var(--white);
 }
 
 .gallery-wrapper {
   margin: 0 0 2rem;
-
-  @include tablet {
-    margin: 0 2rem;
-    position: fixed;
-  }
 }
 
 .gallery-title {
-  color: $white;
+  color: var(--white);
   margin: 0 0 1rem;
-
-  @include tablet {
-    color: $black;
-  }
 }
+
 .gallery-container {
   display: grid;
   justify-content: center;
-
-  @include tablet {
-    grid-column: 1;
-    grid-row: 1;
-  }
 }
 
 .gallery-img {
   margin: 0 auto 1rem;
   max-width: 100%;
   max-height: 500px;
+}
+
+@media all and (min-width: 37.5rem) {
+  .gallery-section {
+    grid-template-columns: calc(100% - 500px) 500px;
+    margin: 3rem 2rem;
+  }
+
+  .gallery-aside {
+    grid-row: 1;
+    grid-column: 2;
+    padding: 0;
+    background: transparent;
+    color: var(--black);
+  }
+
+  .gallery-wrapper {
+    margin: 0 2rem;
+    position: fixed;
+  }
+
+  .gallery-title {
+    color: var(--black);
+  }
+
+  .gallery-container {
+    grid-column: 1;
+    grid-row: 1;
+  }
 }
 </style>

@@ -39,7 +39,7 @@ export default {
 }
 </script>
 
-<template lang="html">
+<template>
   <aside class="sidebar" :class="{ active: isActive }">
     <div
       class="sidebar-tab"
@@ -90,82 +90,84 @@ export default {
   </aside>
 </template>
 
-<style lang="scss" scoped>
-.sidebar-tab {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-top-right-radius: 7px;
-  border-bottom-right-radius: 7px;
-  top: 2rem;
-  right: -50px;
-  width: 50px;
-  height: 130px;
-  transition: background-color 0.5s ease-in;
-  background-color: $primary400;
-  cursor: pointer;
-
-  &:hover {
-    background-color: $secondary400;
-  }
-}
-
+<style scoped>
 .sidebar {
   display: none;
-  position: fixed;
-  transform: translateX(-350px);
-  top: 65px;
-  width: 350px;
-  height: calc(100vh - 65px);
-  background-color: rgba($black, 0.98);
-  z-index: 2;
-  transition: transform 0.8s;
+}
 
-  &.active {
-    transform: translateX(0);
-
-    .sidebar-tab {
-      background-color: $secondary400;
-    }
-  }
-
-  @include desktop {
+@media all and (min-width: 62.5rem) {
+  .sidebar {
     display: initial;
+    position: fixed;
+    transform: translateX(-350px);
+    top: 65px;
+    width: 350px;
+    height: calc(100vh - 65px);
+    background-color: var(--black-98);
+    z-index: 2;
+    transition: transform 0.8s;
   }
-}
 
-.sidebar-tab-icon {
-  color: $white;
-  font-size: 24px;
-}
+  .sidebar-tab {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    top: 2rem;
+    right: -50px;
+    width: 50px;
+    height: 130px;
+    transition: background-color 0.5s ease-in;
+    background-color: var(--primary400);
+    cursor: pointer;
+  }
 
-.sidebar-bio-content {
-  padding: 1.5rem;
-  color: $white;
-  font-weight: 300;
-}
+  .sidebar-tab-icon {
+    color: var(--white);
+    font-size: 24px;
+  }
 
-.sidebar-bio-headshot {
-  max-width: 100%;
-  border-radius: 2px;
-}
+  .sidebar-bio-content {
+    padding: 1.5rem;
+    color: var(--white);
+    font-weight: 300;
+  }
 
-.sidebar-media-list {
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 1rem 2rem;
-  justify-content: space-around;
-}
+  .sidebar-bio-headshot {
+    max-width: 100%;
+    border-radius: 2px;
+  }
 
-.sidebar-media-link {
-  color: $white;
-  font-size: 18px;
+  .sidebar-media-list {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    justify-content: space-around;
+  }
 
-  &:hover {
-    color: $secondary400;
+  .sidebar-media-link {
+    color: var(--white);
+    font-size: 18px;
+  }
+
+  .sidebar-media-link:hover {
+    color: var(--secondary400);
+  }
+
+  .sidebar-tab:hover {
+    background-color: var(--secondary400);
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .sidebar.active .sidebar-tab {
+    background-color: var(--secondary400);
   }
 }
 </style>

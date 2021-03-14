@@ -26,7 +26,7 @@ export default {
   </svg>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .svg-container {
   display: inline-block;
   width: 1em;

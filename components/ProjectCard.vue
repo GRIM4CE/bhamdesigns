@@ -56,9 +56,9 @@ export default {
   </a>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .card {
-  background-color: $primary200;
+  background-color: var(--primary200);
   display: block;
   position: relative;
   max-width: 250px;
@@ -66,10 +66,10 @@ export default {
   padding-bottom: 100%;
   border-radius: 3px;
   overflow: hidden;
+}
 
-  &.clickable {
-    cursor: pointer;
-  }
+.card.clickable {
+  cursor: pointer;
 }
 
 .card-opacity {
@@ -81,7 +81,7 @@ export default {
   max-height: 250px;
   padding: 1rem;
   transition: opacity 0.4s;
-  background-color: rgba($primary400, 0.9);
+  background-color: var(--black-90);
   opacity: 0;
 }
 
@@ -99,13 +99,13 @@ export default {
 
 .card-title {
   display: block;
-  color: $white;
+  color: var(--white);
   font-size: 18px;
   line-height: 1.4;
 }
 
 .card-year {
-  color: $secondary400;
+  color: var(--secondary400);
   font-size: 16px;
 }
 
@@ -118,17 +118,17 @@ export default {
 
   .card {
     transition: transform 0.4s ease-in, box-shadow 0.4s ease-in;
-    box-shadow: 0 2px 2px rgba($black, 0.4);
+    box-shadow: 0 2px 2px var(--black-40);
+  }
 
-    &:hover {
-      transform: scale(1.02) translateY(-3px);
-      box-shadow: 0 3px 3px 1px rgba($black, 0.2);
+  .card:hover {
+    transform: scale(1.02) translateY(-3px);
+    box-shadow: 0 3px 3px 1px var(--black-20);
+  }
 
-      .card-opacity {
-        transition: opacity 0.4s ease-in;
-        opacity: 1;
-      }
-    }
+  .card:hover .card-opacity {
+    transition: opacity 0.4s ease-in;
+    opacity: 1;
   }
 }
 </style>

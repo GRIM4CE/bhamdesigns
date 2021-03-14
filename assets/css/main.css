@@ -1,0 +1,53 @@
+:root {
+  /* Typography */
+  --base-font: 'Open Sans', sans-serif;
+  --head-font: 'Poppins', sans-serif;
+
+  /* Colors */
+  --white: #fff;
+  --black: #201e20;
+  --primary400: #352d38;
+  --primary200: #584c5c;
+  --primary100: #e9e4eb;
+  --secondary400: #ffb800;
+  --primary400-90: rgb(53, 45, 56, .9);
+  --black-40: rgb(32, 30, 32, .4);
+  --black-20:  rgb(32, 30, 32, .2);
+  --black-60: rgb(32, 30, 32, .6);
+  --black-98: rgb(32, 30, 32, .98);
+
+  /* Sizing */
+  --header-mobile-height: 45px;
+  --header-height: 66px;
+  --footer-height: 30px;
+  --gutter: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--base-font);
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--primary400);
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}

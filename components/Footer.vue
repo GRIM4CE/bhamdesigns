@@ -8,7 +8,7 @@ export default {
 }
 </script>
 
-<template lang="html">
+<template>
   <footer>
     <div class="footer-clearfix"></div>
     <div class="footer">
@@ -20,9 +20,9 @@ export default {
   </footer>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .footer-clearfix {
-  height: $footer-height;
+  height: var(--footer-height);
 }
 
 .footer {
@@ -32,16 +32,16 @@ export default {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: $footer-height;
-  background-color: $white;
+  height: var(--footer-height);
+  background-color: var(--white);
 }
 
 .copyright {
   font-size: 12px;
-  color: $black;
+  color: var(--black);
 }
 
 .copyright-brand {
-  color: $primary200;
+  color: var(--primary200);
 }
 </style>

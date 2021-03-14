@@ -68,9 +68,9 @@ export default {
   </header>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .header-clearfix {
-  height: $header-mobile-height;
+  height: var(--header-mobile-height);
 }
 
 .header {
@@ -80,11 +80,11 @@ export default {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: $header-mobile-height;
+  height: var(--header-mobile-height);
   padding: 0 1rem;
-  background-color: $primary400;
+  background-color: var(--primary400);
   z-index: 2;
-  box-shadow: 0 2px 2px rgba($black, 0.6);
+  box-shadow: 0 2px 2px var(--black-60);
 }
 
 .header-logo {
@@ -107,19 +107,19 @@ export default {
 
 .header-link {
   display: inline;
-  color: $white;
-  font-family: $head-font;
+  color: var(--white);
+  font-family: var(--head-font);
   text-decoration: none;
   cursor: pointer;
+}
 
-  &:hover {
-    color: $secondary400;
-  }
+.header-link:hover {
+  color: var(--secondary400);
 }
 
 @media all and (min-width: 37.5rem) {
   .header-clearfix {
-    height: $header-height;
+    height: var(--header-height);
   }
 
   .header-logo {
@@ -129,7 +129,7 @@ export default {
 
   .header {
     display: grid;
-    height: $header-height;
+    height: var(--header-height);
     padding: 0 2rem;
     grid-template-columns: minmax(0, 200px) minmax(0, 1800px);
   }

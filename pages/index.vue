@@ -59,39 +59,38 @@ export default {
   </section>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .card-container {
   display: grid;
   max-width: 1200px;
   justify-content: center;
   margin: 1rem auto;
-  padding: 0 $gutter / 2;
+  padding: 0 var(--gutter) / 2;
   grid-template-columns: repeat(2, minmax(0, 250px));
-  grid-row-gap: $gutter / 2;
-  grid-column-gap: $gutter / 2;
+  grid-row-gap: var(--gutter) / 2;
+  grid-column-gap: var(--gutter) / 2;
 }
 
 @media all and (min-width: 37.5rem) {
   .card-container {
-    margin-top: 0;
     grid-template-columns: repeat(3, minmax(0, 250px));
-    grid-row-gap: $gutter;
-    grid-column-gap: $gutter;
-    padding: $gutter / 2 $gutter;
+    grid-row-gap: var(--gutter);
+    grid-column-gap: var(--gutter);
+    padding: var(--gutter) / 2 var(--gutter);
   }
 }
 
 @media all and (min-width: 46.875rem) {
   .card-container {
     grid-template-columns: repeat(4, minmax(0, 250px));
-    grid-row-gap: $gutter;
-    grid-column-gap: $gutter;
+    grid-row-gap: var(--gutter);
+    grid-column-gap: var(--gutter);
   }
 }
 
 @media all and (min-width: 62.5rem) {
   .card-container {
-    padding: $gutter * 2 $gutter $gutter * 2 $gutter * 4;
+    padding: var(--gutter) * 2 var(--gutter) var(--gutter) * 2 var(--gutter) * 4;
     grid-template-columns: repeat(5, minmax(0, 250px));
   }
 }
