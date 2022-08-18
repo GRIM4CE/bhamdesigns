@@ -27,36 +27,52 @@ const year = computed(() => {
 })
 
 
-const routeToGallery = (slug) => {
-  if (!slug) return
-  router.push({
-    path: `gallery/${slug.path}`,
-    params: { slug: slug.path },
-  })
-}
 </script>
 
 <template>
-  <a
-    class="card"
-    :class="project.slug ? 'clickable' : ''"
-    :tabindex="project.slug ? 0 : -1"
-    @click="routeToGallery(project.slug)"
-  >
-    <div class="card-opacity">
-      <span class="card-title">{{ project.title }}</span>
-      <span class="card-year">{{ year }}</span>
+  <template v-if="project.slug && project.slug.path">
+    <a
+      class="card clickable"
+      :tabindex="0"
+      :href="`gallery/${project.slug.path}`"
+    >
+      <div class="card-opacity">
+        <span class="card-title">{{ project.title }}</span>
+        <span class="card-year">{{ year }}</span>
+      </div>
+      <img
+        class="card-image"
+        width="227.2"
+        height="227.2"
+        :fallback="project.image.fallbackFileType"
+        :src="thumbnail"
+        :alt="project.title"
+      />
+    </a>
+  </template>
+
+
+  <template v-else>
+    <div
+      class="card"
+      :tabindex="-1"
+    >
+      <div class="card-opacity">
+        <span class="card-title">{{ project.title }}</span>
+        <span class="card-year">{{ year }}</span>
+      </div>
+      <img
+        class="card-image"
+        width="227.2"
+        height="227.2"
+        :fallback="project.image.fallbackFileType"
+        :src="thumbnail"
+        :alt="project.title"
+      />
     </div>
-    <img
-      class="card-image"
-      width="227.2"
-      height="227.2"
-      :fallback="project.image.fallbackFileType"
-      :src="thumbnail"
-      :alt="project.title"
-    />
-  </a>
+  </template>
 </template>
+
 
 <style scoped>
 .card {

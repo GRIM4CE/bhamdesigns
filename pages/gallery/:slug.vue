@@ -19,6 +19,7 @@ try {
           title: `Jon Leibham | Web Engineer | ${gallery.value.title}`,
           description: gallery.value.description,
           image: gallery.value.images[0],
+          noIndex: gallery.value.noIndex  
       })
     })
   }

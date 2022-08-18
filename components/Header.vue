@@ -40,8 +40,7 @@ const routeSort = (sort) => {
       <a
         class="header-link"
         tabindex="0"
-        @click="routeSort(null)"
-        @keyup.enter="routeSort(null)"
+        href="/"
       >
         <img class="header-logo" src="/logo/logo.svg" alt="Bham Designs" width="200" height="33" />
       </a>
@@ -51,10 +50,9 @@ const routeSort = (sort) => {
             <a
               class="header-link"
               tabindex="0"
-              @keyup.enter="routeSort(item.slug)"
-              @click="routeSort(item.slug)"
-              >{{item.name}}</a
-            >
+              :href="`/?sort=${item.slug}`">
+              {{item.name}}
+            </a>
           </li>
         </ul>
       </nav>

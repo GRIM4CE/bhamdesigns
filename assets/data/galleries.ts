@@ -74,6 +74,7 @@ const galleries = [{
   },
   title: "Debra Dobs Realty Branding",
   slug: "debra-dobs-realty-branding",
+  noIndex: true,
   projectId: "6048f08344feddd045c0377f"
 },{
   id: "604a24a728a44464cebcc793",

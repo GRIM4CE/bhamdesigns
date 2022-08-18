@@ -26,6 +26,7 @@ export interface Gallery {
   title: string,
   slug: string,
   projectId: string,
+  noIndex?: boolean
 }
 
 export interface State {

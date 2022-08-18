@@ -218,7 +218,6 @@ export default [
     slug: {
       pageType: "GALLERY",
       path: "debra-dobs-realty-branding",
-      "noIndex": true
     },
     category: [
       "design"
