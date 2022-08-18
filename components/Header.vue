@@ -43,7 +43,7 @@ const routeSort = (sort) => {
         @click="routeSort(null)"
         @keyup.enter="routeSort(null)"
       >
-        <img class="header-logo" src="/logo/logo.svg" alt="Bham Designs" />
+        <img class="header-logo" src="/logo/logo.svg" alt="Bham Designs" width="200" height="33" />
       </a>
       <nav class="header-nav">
         <ul class="header-ul">
