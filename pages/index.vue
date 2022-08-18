@@ -1,60 +1,39 @@
-<script>
-import { generateHead } from "@/assets/js/head.js";
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { generateHead } from "~~/assets/head";
+import { fetchProjects } from "~~/assets/data";
+import type { Project } from "~~/types/project";
 
-export default {
-  async asyncData({ app }) {
-    try {
-      // const variables = {}
-      // if (route.query.sort) {
-      //   const filter = route.query.sort.toUpperCase().replace('-', '')
-      //   variables.filter = filter
-      // }
-      const res = await app.apolloProvider.defaultClient.query({
-        query: GET_PROJECTS,
-        // variables,
-      });
-      const projects = res.data.projects || [];
-      return { projects };
-    } catch (e) {
-      return [];
-    }
-  },
-  data() {
-    return {
-      projects: [],
-    };
-  },
-  head() {
-    const title = "Jon Leibham | Web Engineer";
-    const description = `Jon Leibham is a Milwaukee-based Frontend Architect.
-    He primarily works with Node, Vue, Nuxt, Vuex, Apollo,
-    JS(ES6) Typescript, and SCSS.`;
-    return generateHead({ title, description, image: "/img/headshot.jpg" });
-  },
-  computed: {
-    filteredProjects() {
-      if (this.$route.query.sort && this.projects.length !== 0) {
-        const filter = this.$route.query.sort.replace("-", "").toUpperCase();
-        return this.projects.filter(
-          (project) => project.category && project.category.includes(filter)
-        );
-      }
-      return this.projects;
-    },
-  },
-};
+const title = "Jon Leibham | Web Engineer";
+const description = `Jon Leibham is a Milwaukee-based Frontend Architect.
+  He primarily works with Node, Vue, Nuxt, Vuex, Apollo,
+  JS(ES6) Typescript, and SCSS.`;
+
+useHead({ 
+  ...generateHead({ title, description, image: "/img/headshot.jpg" })
+})
+
+const route = useRoute()
+
+const projects = ref<Project[]>([]) 
+projects.value = await fetchProjects()
+const filteredProjects = computed(() => {
+  if (route.query.sort && !Array.isArray(route.query.sort) && projects.value.length !== 0) {
+    return projects.value.filter(
+      (project) => project.category && project.category.includes(route.query.sort)
+    );
+  }
+  
+  return projects.value;
+})
 </script>
 
 <template>
   <section>
     <Bio />
-    <div v-if="filteredProjects" class="card-container">
-      <ProjectCard
-        v-for="(project, index) in filteredProjects"
-        :key="index"
-        :project="project"
-      ></ProjectCard>
-    </div>
+    <main v-if="filteredProjects" class="card-container">
+      <ProjectCard v-for="project in filteredProjects" :key="project.id" :project="project"/> 
+    </main>
   </section>
 </template>
 

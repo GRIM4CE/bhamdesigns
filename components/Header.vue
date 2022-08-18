@@ -1,14 +1,35 @@
-<script>
-export default {
-  methods: {
-    route(sort) {
-      const query = sort ? { sort } : {};
-      this.$router.push({
-        path: "/",
-        query,
-      });
-    },
-  },
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const menu = [{
+  slug: 'development',
+  name: 'Development'
+},
+{
+  slug: 'uxui',
+  name: 'UX/UI'
+},
+{
+  slug: 'design',
+  name: 'Design'
+},
+{
+  slug: 'photography',
+  name: 'Photography'
+},
+{
+  slug: 'art',
+  name: 'Fine Art'
+}]
+
+const routeSort = (sort) => {
+  const query = sort ? { sort } : {};
+  router.push({
+    path: "/",
+    query,
+  })
 };
 </script>
 
@@ -19,47 +40,20 @@ export default {
       <a
         class="header-link"
         tabindex="0"
-        @click="route(null)"
-        @keyup.enter="route(null)"
+        @click="routeSort(null)"
+        @keyup.enter="routeSort(null)"
       >
         <img class="header-logo" src="/logo/logo.svg" alt="Bham Designs" />
       </a>
       <nav class="header-nav">
         <ul class="header-ul">
-          <li class="header-li">
+          <li class="header-li" v-for="item in menu" :key="item.slug">
             <a
               class="header-link"
               tabindex="0"
-              @keyup.enter="route('design')"
-              @click="route('design')"
-              >Design</a
-            >
-          </li>
-          <li class="header-li">
-            <a
-              class="header-link"
-              tabindex="0"
-              @keyup.enter="route('web-design')"
-              @click="route('web-design')"
-              >UX/UI</a
-            >
-          </li>
-          <li class="header-li">
-            <a
-              class="header-link"
-              tabindex="0"
-              @keyup.enter="route('photography')"
-              @click="route('photography')"
-              >Photography</a
-            >
-          </li>
-          <li class="header-li">
-            <a
-              class="header-link"
-              tabindex="0"
-              @keyup.enter="route('fine-art')"
-              @click="route('fine-art')"
-              >Fine-Art</a
+              @keyup.enter="routeSort(item.slug)"
+              @click="routeSort(item.slug)"
+              >{{item.name}}</a
             >
           </li>
         </ul>

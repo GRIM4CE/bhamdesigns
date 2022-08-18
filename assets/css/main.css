@@ -10,11 +10,12 @@
   --primary200: #584c5c;
   --primary100: #e9e4eb;
   --secondary400: #ffb800;
-  --primary400-90: rgb(53, 45, 56, .9);
-  --black-40: rgb(32, 30, 32, .4);
-  --black-20:  rgb(32, 30, 32, .2);
-  --black-60: rgb(32, 30, 32, .6);
-  --black-98: rgb(32, 30, 32, .98);
+  --primary400-90: #352d38e6;
+  --black-40: #201e2066;
+  --black-20:  #201e2033;
+  --black-60: #201e2099;
+  --black-90: #201e20e6;
+  --black-98: #201e20fa;
 
   /* Sizing */
   --header-mobile-height: 45px;

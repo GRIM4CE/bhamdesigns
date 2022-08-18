@@ -1,38 +1,38 @@
-<script>
-export default {
-  props: {
-    project: {
-      type: Object,
-      default: () => ({}),
-    },
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+import { formatDate } from '~~/assets/utilities'
+
+import type { Project } from "~~/types/project";
+import type { PropType } from 'vue';
+
+const router = useRouter()
+
+const props = defineProps({
+  project: {
+    type: Object as PropType<Project>,
+    default: () => ({}),
   },
-  data() {
-    return {
-      imageSrc: '',
-    }
-  },
-  computed: {
-    thumbnail() {
-      const { fileType, path } = this.project.image
-      return `/img/thumbnails/${fileType}/${path}.${fileType}`
-    },
-    year() {
-      const date = new Date(this.project.date * 1000)
-      return date.toLocaleDateString(undefined, {
-        month: 'long',
-        year: 'numeric',
-      })
-    },
-  },
-  methods: {
-    route(slug) {
-      if (!slug) return
-      this.$router.push({
-        path: `gallery/${slug.path}`,
-        params: { slug: slug.path },
-      })
-    },
-  },
+})
+
+const thumbnail = computed(() => {
+  const { fileType, path } = props.project.image
+  return `/img/thumbnails/${fileType}/${path}.${fileType}`
+})
+
+const year = computed(() => {
+  const endDate = props.project.endDate ? formatDate(props.project.endDate) : 'Present'
+  if(!props.project.startDate) return endDate
+  return `${formatDate(props.project.startDate)} – ${endDate}`
+})
+
+
+const routeToGallery = (slug) => {
+  if (!slug) return
+  router.push({
+    path: `gallery/${slug.path}`,
+    params: { slug: slug.path },
+  })
 }
 </script>
 
@@ -41,7 +41,7 @@ export default {
     class="card"
     :class="project.slug ? 'clickable' : ''"
     :tabindex="project.slug ? 0 : -1"
-    @click="route(project.slug)"
+    @click="routeToGallery(project.slug)"
   >
     <div class="card-opacity">
       <span class="card-title">{{ project.title }}</span>

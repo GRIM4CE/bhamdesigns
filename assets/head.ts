@@ -1,4 +1,12 @@
-export const generateHead = ({ title, description, image, noIndex }) => {
+
+type generateHeadPayload = {
+  title: string,
+  description: string,
+  image: string,
+  noIndex?: boolean
+}
+
+export const generateHead = ({ title, description, image, noIndex }: generateHeadPayload) => {
   const head = {
     title,
     meta: [

@@ -1,11 +1,7 @@
-<script>
-export default {
-  computed: {
-    currentYear() {
-      return new Date().getFullYear()
-    },
-  },
-}
+<script setup lang="ts">
+const currentYear = computed(()  => {
+  return new Date().getFullYear()
+})
 </script>
 
 <template>

@@ -1,17 +1,18 @@
-<script>
+<script setup lang="ts">
 import icons from '~/assets/icons/index.js'
 
-export default {
-  computed: {
-    path() {
-      if (!icons[this.$attrs.name])
-        throw new Error(
-          `The icon: "${this.$attrs.name}" is either unregistered or does not exist in the "~/assets/icons/" directory`
-        )
-      return icons[this.$attrs.name].path
-    },
-  },
-}
+import { useAttrs } from 'vue';
+
+const attrs = useAttrs()
+
+const path = computed(() => {
+  if (!icons[attrs.name])
+    throw new Error(
+      `The icon: "${attrs.name}" is either unregistered or does not exist in the "~/assets/icons/" directory`
+    )
+  return icons[attrs.name].path
+})
+
 </script>
 
 <template>

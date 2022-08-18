@@ -1,48 +1,44 @@
-<script>
-import { generateHead } from "@/assets/js/head.js";
+<script setup lang="ts">
+import { useRoute, useRouter } from 'vue-router'
 
-export default {
-  async asyncData({ app, route }) {
-    try {
-      const res = await app.apolloProvider.defaultClient.query({
-        query: GET_GALLERY,
-        variables: { slug: route.params.slug },
-      });
-      const gallery = res.data.gallery;
-      return { gallery };
-    } catch (e) {
-      return {};
-    }
-  },
-  head() {
-    if (!this.hasGallery) return;
-    const title = `Jon Leibham | Web Engineer | ${this.gallery.project.title}`;
-    return generateHead({
-      title,
-      description: this.gallery.description,
-      image: this.galleryImages[0],
-      noIndex: this.gallery.project.slug.noIndex,
-    });
-  },
-  computed: {
-    hasGallery() {
-      return Object.keys(this.gallery).length !== 0;
-    },
-    galleryImages() {
-      const { count, path, fileType } = this.gallery.images;
-      return [...Array(count)].map(
-        (_, i) => "/img/galleries" + path + i + fileType
-      );
-    },
-  },
-};
+import { generateHead } from "~~/assets/head";
+import { fetchGallery } from "~~/assets/data";
+
+import type { Gallery } from "~~/types/project";
+
+const route = useRoute()
+const router = useRouter()
+const gallery = ref<Gallery>()
+
+try {
+  if(route.params.slug && !Array.isArray(route.params.slug)) {
+    gallery.value = fetchGallery(route.params.slug)
+
+  useHead({ 
+      ...generateHead({ 
+          title: `Jon Leibham | Web Engineer | ${gallery.value.title}`,
+          description: gallery.value.description,
+          image: gallery.value.images[0],
+      })
+    })
+  }
+} catch(e) {
+  router.push('/404')
+}
+
+const galleryImages = computed(() => {
+  const { count, path, fileType } = gallery.value.images;
+  return [...Array(count)].map(
+    (_, i) => "/img/galleries" + path + i + fileType
+  );
+})
 </script>
 
 <template>
-  <section v-if="hasGallery" class="gallery-section">
+  <section v-if="gallery" class="gallery-section">
     <aside class="gallery-aside">
       <div class="gallery-wrapper">
-        <h1 class="gallery-title">{{ gallery.project.title }}</h1>
+        <h1 class="gallery-title">{{ gallery.title }}</h1>
         <p class="gallery-description">{{ gallery.description }}</p>
       </div>
     </aside>

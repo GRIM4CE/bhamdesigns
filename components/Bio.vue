@@ -1,42 +1,33 @@
-<script>
-export default {
-  data() {
-    return {
-      isActive: false,
-      media: [
-        {
-          name: 'email',
-          link: 'mailto:jleibham@gmail.com',
-        },
-        {
-          name: 'instagram',
-          link: 'https://www.instagram.com/g_r_i_m_a_c_e/?hl=en',
-        },
-        {
-          name: 'linkedin',
-          link: 'https://www.linkedin.com/in/jon-leibham-a29b93105/',
-        },
-        // {
-        //   name: ['fab', 'github'],
-        //   link: 'https://github.com/GRIM4CE',
-        // },
-        // {
-        //   name: ['fab', 'npm'],
-        //   link: 'https://www.npmjs.com/~grim4ce',
-        // },
-        // {
-        //   name: ['fab', 'stack-overflow'],
-        //   link: 'https://stackoverflow.com/users/3561677/jleibham',
-        // },
-      ],
-    }
+<script setup lang="ts">
+const isActive = ref(false)
+const media = [
+  {
+    name: 'email',
+    link: 'mailto:jleibham@gmail.com',
   },
-  methods: {
-    toggleBio() {
-      this.isActive = !this.isActive
-    },
+  {
+    name: 'instagram',
+    link: 'https://www.instagram.com/g_r_i_m_a_c_e/?hl=en',
   },
-}
+  {
+    name: 'linkedin',
+    link: 'https://www.linkedin.com/in/jon-leibham-a29b93105/',
+  },
+  // {
+  //   name: ['fab', 'github'],
+  //   link: 'https://github.com/GRIM4CE',
+  // },
+  // {
+  //   name: ['fab', 'npm'],
+  //   link: 'https://www.npmjs.com/~grim4ce',
+  // },
+  // {
+  //   name: ['fab', 'stack-overflow'],
+  //   link: 'https://stackoverflow.com/users/3561677/jleibham',
+  // },
+]
+
+const toggleBio = () => isActive.value = !isActive.value
 </script>
 
 <template>
