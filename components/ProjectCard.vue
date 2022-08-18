@@ -47,8 +47,10 @@ const routeToGallery = (slug) => {
       <span class="card-title">{{ project.title }}</span>
       <span class="card-year">{{ year }}</span>
     </div>
-    <DImg
+    <img
       class="card-image"
+      width="227.2"
+      height="227.2"
       :fallback="project.image.fallbackFileType"
       :src="thumbnail"
       :alt="project.title"
