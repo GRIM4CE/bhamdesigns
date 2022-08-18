@@ -1,0 +1,109 @@
+{
+	"Add Atom Import": {
+		"scope": "javascript,typescript,vue",
+		"prefix": "atom",
+		"body": [
+			"import D${1} from '@atoms/D${1}/D${1}.vue'",
+		],
+		"description": "quick import for atom path"
+	},
+  "Add Molecules Import": {
+		"scope": "javascript,typescript,vue",
+		"prefix": "molecules",
+		"body": [
+			"import D${1} from '@molecules/${2}D${1}/D${1}.vue'",
+		],
+		"description": "quick import for molecules path"
+	},
+  "Add Organisms Import": {
+		"scope": "javascript,typescript,vue",
+		"prefix": "organisms",
+		"body": [
+			"import D${1} from '@organisms/${2}D${1}/D${1}.vue'",
+		],
+		"description": "quick import for organisms path"
+	},
+  "Add Base Unit Test": {
+		"scope": "javascript,typescript",
+		"prefix": "unit test",
+		"body": [
+      "import { mount } from '@vue/test-utils';",
+      "import { describe, it, expect } from 'vitest';",
+      "import ${1} from './${1}.vue';",
+      "",
+      "describe('${1}', () => {",
+      "  it('matches snapshot', () => {",
+      "    const wrapper = mount(${1}, {});",
+      "    expect(wrapper.html()).toMatchSnapshot();",
+      "  });",
+      "});",
+		],
+		"description": "quick scaffold of base unit test"
+	},
+  "Add Base Story": {
+		"scope": "javascript,typescript",
+		"prefix": "story",
+		"body": [
+      "import D${1} from './D${1}.vue';",
+      "",
+      "import type { Meta, StoryFn } from '@storybook/vue3';",
+      "",
+      "export default {",
+      "  title: '${2|organisms,molecules,templates,stories,atoms|}',",
+      "  component: D${1},",
+      "} as Meta<typeof D${1}>;",
+      "",
+      "const Template: StoryFn<typeof D${1}> = (args) => ({",
+      "  components: {",
+      "    D${1},",
+      "  },",
+      "  setup() {",
+      "    return { args };",
+      "  },",
+      "  template: `",
+      "    <D${1} v-bind=\"args\" ${3}>${4}</D${1}>",
+      "  `,",
+      "});",
+      "",
+      "export const Standard = Template.bind({});",
+      "Standard.args = {};",
+		],
+		"description": "quick scaffold of base unit test"
+	},
+  // HTML
+  "DText": {
+		"scope": "vue-html",
+		"prefix": "DText",
+		"body": [
+      "<DText variant=\"${1}\" type=\"${1}\">${2}</DText>",
+		],
+		"description": "quick scaffold of DText component"
+	},
+  // CSS
+  "Import Component styles": {
+		"scope": "css,scss,vue",
+		"prefix": "imp",
+		"body": [
+			"@import '@components/${1}';",
+		],
+		"description": "quick import for component styles"
+	},
+  "@extend": {
+		"scope": "css, scss",
+		"prefix": "extend",
+		"body": [
+      "@extend %${1};",
+		],
+		"description": "quick scaffold of scss extend"
+	},
+  "@include": {
+		"scope": "css, scss",
+		"prefix": "include",
+		"body": [
+      "@include ${1|sm,md,lg,xl|} {",
+      "  ${2}",
+      "}",
+		],
+		"description": "quick scaffold of scss include"
+	}
+}

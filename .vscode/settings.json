@@ -1,0 +1,34 @@
+{
+  "diffEditor.renderSideBySide": true,
+  "editor.fontSize": 14,
+  "editor.lineHeight": 20,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "terminal.integrated.fontSize": 14,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+  "source.fixAll.eslint": true
+  },
+  "editor.minimap.enabled": false,
+  "workbench.colorTheme": "Atom One Dark",
+  "editor.fontLigatures": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "explorer.confirmDelete": false,
+  "extensions.ignoreRecommendations": true,
+  "css.validate": false,
+  "workbench.iconTheme": "file-icons",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "stylelint.validate": [
+    "scss",
+    "vue"
+  ]
+}
