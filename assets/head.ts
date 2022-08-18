@@ -9,6 +9,9 @@ type generateHeadPayload = {
 export const generateHead = ({ title, description, image, noIndex }: generateHeadPayload) => {
   const head = {
     title,
+    htmlAttrs: {
+      lang: 'en'
+    },
     meta: [
       { hid: 'description', name: 'description', content: description },
       { hid: 'ogTitle', property: 'og:title', content: title },
