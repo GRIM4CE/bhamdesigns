@@ -5,9 +5,8 @@ import { fetchProjects } from "~~/assets/data";
 import type { Project } from "~~/types/project";
 
 const title = "Jon Leibham | Web Engineer";
-const description = `Jon Leibham is a Milwaukee-based Frontend Architect.
-  He primarily works with Node, Vue, Nuxt, Vuex, Apollo,
-  JS(ES6) Typescript, and SCSS.`;
+const description = `Jon Leibham is a Frontend Developer.
+  He primarily works with Typescript, Vue, and Node.`;
 
 useHead({ 
   ...generateHead({ title, description, image: "/img/headshot.jpg" })
