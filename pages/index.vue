@@ -43,18 +43,18 @@ const filteredProjects = computed(() => {
   max-width: 1200px;
   justify-content: center;
   margin: 1rem auto;
-  padding: 0 var(--gutter) / 2;
+  padding: 0 calc(var(--gutter) / 2);
   grid-template-columns: repeat(2, minmax(0, 250px));
-  grid-row-gap: var(--gutter) / 2;
-  grid-column-gap: var(--gutter) / 2;
+  row-gap: calc(var(--gutter) / 2);
+  column-gap: calc(var(--gutter) / 2);
 }
 
 @media all and (min-width: 37.5rem) {
   .card-container {
     grid-template-columns: repeat(3, minmax(0, 250px));
     grid-row-gap: var(--gutter);
-    grid-column-gap: var(--gutter);
-    padding: var(--gutter) / 2 var(--gutter);
+    column-gap: var(--gutter);
+    padding: calc(var(--gutter) / 2) var(--gutter);
   }
 }
 
@@ -62,13 +62,13 @@ const filteredProjects = computed(() => {
   .card-container {
     grid-template-columns: repeat(4, minmax(0, 250px));
     grid-row-gap: var(--gutter);
-    grid-column-gap: var(--gutter);
+    column-gap: var(--gutter);
   }
 }
 
 @media all and (min-width: 62.5rem) {
   .card-container {
-    padding: var(--gutter) * 2 var(--gutter) var(--gutter) * 2 var(--gutter) * 4;
+    padding: calc(var(--gutter) * 2) var(--gutter) calc(var(--gutter) * 2) calc(var(--gutter) * 4);
     grid-template-columns: repeat(5, minmax(0, 250px));
   }
 }

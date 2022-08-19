@@ -51,12 +51,7 @@ const toggleBio = () => isActive.value = !isActive.value
         load="lazy"
       />
       <p>
-        Jon Leibham is a Milwaukee-based Frontend Architect. He primarily works
-        with Node, Vue, Nuxt, Vuex, Apollo, JS(ES6) Typescript, and SCSS but has
-        used many other language and libraries over the years. He takes pride in
-        staying sharp, always looking to learn a new skill. When he's not locked
-        in the void, he enjoys cooking, oil painting, caring for plants, camping
-        & indulging in whatever his great city has to offer.
+        Hi, my name is Jon Leibham and I'm a frontend developer. Lately, I've been building Design Systems(Vue, Storybook, Style Dictionary) and structuring Monorepos (Lerna, NX) to help support and enforce branding across large multi-application ecosystems. Tools I love to use for  code quality are Typescript, Vites/Jest, and A11y. I've worked in Vue/Nuxt for the last four or so years with some exposure to React though recently have been interested in all the new frameworks and runtimes :D. I also have experience working with Node in the filesystem for various needs (image compression, file generation, scaffolding). When I'm not living the dream at work coding, I love to hang out with my fiancé Juliette, grow vegetables (hot peppers and tomatoes), build/play synthesizers, and paint.
       </p>
     </div>
 
