@@ -106,7 +106,8 @@ const year = computed(() => {
 .card-image {
   width: 100%;
   max-width: 250px;
-  max-height: 250px;
+  aspect-ratio: attr(width) / attr(height);
+  height: auto;
   opacity: 1;
   transition: 0.2s opacity;
 }

@@ -14,7 +14,7 @@ const media = [
     link: 'https://www.linkedin.com/in/jon-leibham-a29b93105/',
   },
   // {
-  //   name: ['fab', 'github'],
+  //   name: 'github',
   //   link: 'https://github.com/GRIM4CE',
   // },
   // {
