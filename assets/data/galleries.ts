@@ -200,3 +200,4 @@ const galleries = [{
 }]
 
 export const getGallery = (slug) => galleries.find(gallery => gallery.slug === slug)
+export default galleries
