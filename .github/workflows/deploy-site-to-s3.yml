@@ -30,4 +30,4 @@ jobs:
       - name: Generate
         run: npm run generate
       - name: Deploy
-        run: aws s3 sync ./dist s3://arn:aws:s3:::bhamdesigns.com
+        run: aws s3 sync ./dist s3:bhamdesigns.com
