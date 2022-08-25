@@ -30,7 +30,10 @@ try {
 const galleryImages = computed(() => {
   const { count, path, fileType } = gallery.value.images;
   return [...Array(count)].map(
-    (_, i) => "/img/galleries" + path + i + fileType
+    (_, i) => ({
+      path: `https://bhamdesigns.imgix.net/galleries/${path}/${path}-${i}${fileType}?auto=compress`,
+      alt: `${gallery.value.title} – Image ${i + 1} of ${count}`
+    })
   );
 })
 </script>
@@ -46,11 +49,11 @@ const galleryImages = computed(() => {
 
     <div class="gallery-container">
       <DImg
-        v-for="(image, index) in galleryImages"
-        :key="index"
-        loading="lazy"
+        v-for="image in galleryImages"
+        :key="image.alt"
+        :alt="image.alt"
         class="gallery-img"
-        :src="image"
+        :src="image.path"
       />
     </div>
   </section>

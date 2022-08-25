@@ -17,7 +17,7 @@ const route = useRoute()
 const projects = ref<Project[]>([]) 
 projects.value = await fetchProjects()
 const filteredProjects = computed(() => {
-  if (route.query.sort && !Array.isArray(route.query.sort) && projects.value.length !== 0) {
+  if (route?.query?.sort && !Array.isArray(route.query.sort) && projects.value.length !== 0) {
     return projects.value.filter(
       (project) => project.category && project.category.includes(route.query.sort)
     );

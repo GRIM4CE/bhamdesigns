@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-
 import { formatDate } from '~~/assets/utilities'
 
 import type { Project } from "~~/types/project";
@@ -17,7 +16,7 @@ const props = defineProps({
 
 const thumbnail = computed(() => {
   const { fileType, path } = props.project.image
-  return `/img/thumbnails/${fileType}/${path}.${fileType}`
+  return `https://bhamdesigns.imgix.net/thumbnails/${fileType}/${path}.${fileType}`
 })
 
 const year = computed(() => {
@@ -40,11 +39,10 @@ const year = computed(() => {
         <span class="card-title">{{ project.title }}</span>
         <span class="card-year">{{ year }}</span>
       </div>
-      <img
+      <DImg
         class="card-image"
         width="227.2"
         height="227.2"
-        :fallback="project.image.fallbackFileType"
         :src="thumbnail"
         :alt="project.title"
       />
@@ -61,11 +59,10 @@ const year = computed(() => {
         <span class="card-title">{{ project.title }}</span>
         <span class="card-year">{{ year }}</span>
       </div>
-      <img
+      <DImg
         class="card-image"
         width="227.2"
         height="227.2"
-        :fallback="project.image.fallbackFileType"
         :src="thumbnail"
         :alt="project.title"
       />
@@ -104,10 +101,7 @@ const year = computed(() => {
 }
 
 .card-image {
-  width: 100%;
   max-width: 250px;
-  aspect-ratio: attr(width) / attr(height);
-  height: auto;
   opacity: 1;
   transition: 0.2s opacity;
 }
