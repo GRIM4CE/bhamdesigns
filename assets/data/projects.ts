@@ -1,4 +1,4 @@
-export default [
+const projects = [
   {
     id: "60498b7dad59e072ede17d64",
     image: {
@@ -462,3 +462,7 @@ export default [
     }
   }
 ]
+
+
+export const getProjects = () => projects
+export default projects
