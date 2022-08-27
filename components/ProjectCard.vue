@@ -71,7 +71,7 @@ const year = computed(() => {
 </template>
 
 
-<style scoped>
+<style scoped lang="css">
 .card {
   background-color: var(--primary200);
   display: block;

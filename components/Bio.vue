@@ -74,7 +74,7 @@ const toggleBio = () => isActive.value = !isActive.value
   </aside>
 </template>
 
-<style scoped>
+<style scoped lang="css">
 .sidebar {
   display: none;
 }

@@ -59,7 +59,7 @@ const galleryImages = computed(() => {
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="css">
 .gallery-section {
   display: grid;
 }

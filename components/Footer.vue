@@ -16,7 +16,8 @@ const currentYear = computed(()  => {
   </footer>
 </template>
 
-<style scoped>
+<style scoped lang="css">
+
 .footer-clearfix {
   height: var(--footer-height);
 }

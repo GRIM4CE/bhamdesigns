@@ -27,7 +27,8 @@ const path = computed(() => {
   </svg>
 </template>
 
-<style scoped>
+<style scoped lang="css">
+
 .svg-container {
   display: inline-block;
   width: 1em;

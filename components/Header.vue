@@ -60,7 +60,7 @@ const routeSort = (sort) => {
   </header>
 </template>
 
-<style scoped>
+<style scoped lang="css">
 .header-clearfix {
   height: var(--header-mobile-height);
 }

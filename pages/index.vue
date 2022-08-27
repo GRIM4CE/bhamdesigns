@@ -36,7 +36,7 @@ const filteredProjects = computed(() => {
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="css">
 .card-container {
   display: grid;
   max-width: 1200px;
