@@ -1,5 +1,6 @@
 @import './styles/variables.scss';
 @import './styles/mixins.scss';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 * {
   box-sizing: border-box;
@@ -162,10 +163,6 @@ img {
     background-color: $black98;
     z-index: 2;
     transition: transform 0.8s;
-  }
-
-  .sidebar p {
-    font-weight: 300;
   }
 
   .sidebar-tab {
