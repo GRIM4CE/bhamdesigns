@@ -1,5 +1,8 @@
 <template>
+  <Bio />
   <Header />
-  <slot />
+  <main class="main-container">
+    <slot />
+  </main>
   <Footer />
 </template>
