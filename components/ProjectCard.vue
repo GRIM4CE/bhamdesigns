@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { formatDate } from '~~/assets/utilities'
 
 import type { Project } from "~~/types/project";
 import type { PropType } from 'vue';
@@ -13,6 +12,14 @@ const props = defineProps({
     default: () => ({}),
   },
 })
+
+const formatDate = (unixTimestamp: number) => {
+  const date = new Date(unixTimestamp * 1000)
+  return date.toLocaleDateString(undefined, {
+    month: 'long',
+    year: 'numeric',
+  })
+}
 
 const thumbnail = computed(() => {
   const { fileType, path } = props.project.image

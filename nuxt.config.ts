@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   layoutTransition: null,
   pageTransition: null,
   css: [
-    '@/assets/css/main.css'
+    '@/assets/style.scss'
   ],
   modules: ['~/modules/sitemap'],
   sitemap: {

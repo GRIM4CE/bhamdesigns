@@ -42,7 +42,7 @@ const routeSort = (sort) => {
         tabindex="0"
         href="/"
       >
-        <img class="header-logo" src="/logo/logo.svg" alt="Bham Designs" width="200" height="33" />
+        <DImg class="header-logo" src="https://bhamdesigns.imgix.net/logo/logo.svg" alt="Bham Designs" width="200" height="33" />
       </a>
       <nav class="header-nav">
         <ul class="header-ul">

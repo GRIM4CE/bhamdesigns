@@ -1,5 +1,5 @@
 <template>
-  <Bio />
+  <Sidebar />
   <Header />
   <main class="main-container">
     <slot />

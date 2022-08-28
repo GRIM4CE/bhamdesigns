@@ -40,14 +40,12 @@ const galleryImages = computed(() => {
 
 <template>
   <section v-if="gallery" class="gallery-section">
-    <aside class="gallery-aside">
-      <div class="gallery-wrapper">
-        <h1 class="gallery-title">{{ gallery.title }}</h1>
-        <p class="gallery-description">{{ gallery.description }}</p>
-      </div>
-    </aside>
+    <article class="gallery-text">
+      <h1 class="gallery-title">{{ gallery.title }}</h1>
+      <p class="gallery-description">{{ gallery.description }}</p>
+    </article>
 
-    <div class="gallery-container">
+    <div class="gallery-image-container">
       <DImg
         v-for="image in galleryImages"
         :key="image.alt"
