@@ -4,6 +4,12 @@ import { defineNuxtConfig } from 'nuxt'
 export default defineNuxtConfig({
   layoutTransition: null,
   pageTransition: null,
+  head: {
+    link: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://bhamdesigns.imgix.net" }
+    ]
+  },
   css: [
     '@/assets/style.scss'
   ],
