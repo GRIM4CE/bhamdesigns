@@ -5,13 +5,7 @@ const currentYear = computed(()  => {
 </script>
 
 <template>
-  <footer>
-    <div class="footer-clearfix"></div>
-    <div class="footer">
-      <h6 class="copyright">
-        © {{ currentYear }} | <span class="copyright-brand">Bham Design</span> |
-        All Rights Reserved
-      </h6>
-    </div>
+  <footer class="footer">
+    <span class="copyright">© {{ currentYear }} | Bham Designs</span>
   </footer>
 </template>
