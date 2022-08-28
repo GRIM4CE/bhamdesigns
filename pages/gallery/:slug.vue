@@ -39,7 +39,7 @@ const galleryImages = computed(() => {
 </script>
 
 <template>
-  <section v-if="gallery" class="gallery-section">
+  <section class="gallery-section">
     <article class="gallery-text">
       <h1 class="gallery-title">{{ gallery.title }}</h1>
       <p class="gallery-description">{{ gallery.description }}</p>

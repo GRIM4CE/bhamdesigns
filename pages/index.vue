@@ -28,7 +28,7 @@ const filteredProjects = computed(() => {
 </script>
 
 <template>
-  <section v-if="filteredProjects" class="card-container">
+  <section v-if="filteredProjects" class="project-section">
     <ProjectCard v-for="project in filteredProjects" :key="project.id" :project="project"/> 
   </section>
 </template>
