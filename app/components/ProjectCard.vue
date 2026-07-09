@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import type { Project } from '~~/shared/types/project'
 
-const props = defineProps<{ project: Project }>()
+const props = withDefaults(defineProps<{
+  project: Project
+  /** Above-the-fold cards load eagerly; the first is the LCP element. */
+  eager?: boolean
+  priority?: boolean
+}>(), {
+  eager: false,
+  priority: false,
+})
 
 // Fixed locale + UTC so prerendered HTML matches the client render (avoids hydration mismatch).
 const formatDate = (unixSeconds: number) =>
@@ -42,6 +50,8 @@ const to = computed(() =>
       :height="227"
       :src="thumbnail"
       :alt="project.title"
+      :loading="eager ? 'eager' : 'lazy'"
+      :fetchpriority="priority ? 'high' : 'auto'"
     />
   </NuxtLink>
 
@@ -59,6 +69,8 @@ const to = computed(() =>
       :height="227"
       :src="thumbnail"
       :alt="project.title"
+      :loading="eager ? 'eager' : 'lazy'"
+      :fetchpriority="priority ? 'high' : 'auto'"
     />
   </div>
 </template>

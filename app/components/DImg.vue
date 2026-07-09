@@ -5,10 +5,12 @@ withDefaults(defineProps<{
   width?: string | number
   height?: string | number
   loading?: 'lazy' | 'eager'
+  fetchpriority?: 'high' | 'low' | 'auto'
 }>(), {
   width: undefined,
   height: undefined,
   loading: 'lazy',
+  fetchpriority: 'auto',
 })
 </script>
 
@@ -19,6 +21,7 @@ withDefaults(defineProps<{
     :width="width"
     :height="height"
     :loading="loading"
+    :fetchpriority="fetchpriority"
     decoding="async"
   >
 </template>

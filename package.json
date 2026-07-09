@@ -9,6 +9,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "images:build": "node scripts/build-gallery-images.mjs",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
@@ -29,6 +30,7 @@
     "eslint": "^10.6.0",
     "nuxt": "^4.4.8",
     "sass": "^1.101.0",
+    "sharp": "^0.35.3",
     "typescript": "^5.9.3",
     "vue-tsc": "^3.3.7"
   }

@@ -6,6 +6,10 @@ const description = 'Jon Leibham is a frontend developer working primarily with 
 
 useSeo({ title, description, image: '/headshot.jpeg' })
 
+// Roughly the first two rows at the widest breakpoint — enough to cover the fold
+// without eagerly fetching the whole grid.
+const EAGER_CARDS = 10
+
 const route = useRoute()
 const projects = getSortedProjects()
 
@@ -19,11 +23,24 @@ const filteredProjects = computed(() => {
 </script>
 
 <template>
-  <section class="project-section">
-    <ProjectCard
-      v-for="project in filteredProjects"
-      :key="project.id"
-      :project="project"
-    />
-  </section>
+  <div>
+    <!-- The design carries no visible page heading, but the document still needs
+         exactly one h1 for screen readers and crawlers. -->
+    <h1 class="visually-hidden">
+      Jon Leibham — Web Engineer
+    </h1>
+
+    <section
+      class="project-section"
+      aria-label="Selected projects"
+    >
+      <ProjectCard
+        v-for="(project, index) in filteredProjects"
+        :key="project.id"
+        :project="project"
+        :eager="index < EAGER_CARDS"
+        :priority="index === 0"
+      />
+    </section>
+  </div>
 </template>

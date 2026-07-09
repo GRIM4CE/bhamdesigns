@@ -38,6 +38,12 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2025-07-01',
+
+  // The stylesheet is small enough that a separate request costs more than it saves.
+  features: {
+    inlineStyles: true,
+  },
+
   nitro: {
     prerender: {
       crawlLinks: true,

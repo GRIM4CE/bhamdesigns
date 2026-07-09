@@ -2,9 +2,9 @@
 const isActive = ref(false)
 
 const media = [
-  { name: 'email', link: 'mailto:jleibham@gmail.com' },
-  { name: 'github', link: 'https://github.com/GRIM4CE' },
-  { name: 'linkedin', link: 'https://www.linkedin.com/in/jon-leibham-a29b93105/' },
+  { name: 'email', label: 'Email Jon Leibham', link: 'mailto:jleibham@gmail.com' },
+  { name: 'github', label: 'Jon Leibham on GitHub', link: 'https://github.com/GRIM4CE' },
+  { name: 'linkedin', label: 'Jon Leibham on LinkedIn', link: 'https://www.linkedin.com/in/jon-leibham-a29b93105/' },
 ]
 
 const toggleSidebar = () => {
@@ -14,23 +14,25 @@ const toggleSidebar = () => {
 
 <template>
   <aside
+    id="profile-panel"
     class="sidebar"
     :class="{ active: isActive }"
   >
-    <div
+    <!-- A real button gets Enter *and* Space, focusability, and the button role
+         for free; the previous div[role=button] only handled Enter. -->
+    <button
       class="sidebar-tab"
-      role="button"
-      tabindex="0"
+      type="button"
       aria-label="Toggle profile panel"
+      aria-controls="profile-panel"
       :aria-expanded="isActive"
-      @keyup.enter="toggleSidebar"
       @click="toggleSidebar"
     >
       <DIcon
         class="sidebar-tab-icon"
         name="menu"
       />
-    </div>
+    </button>
     <DImg
       class="sidebar-headshot"
       src="/headshot.webp"
@@ -44,7 +46,7 @@ const toggleSidebar = () => {
 
     <ul class="sidebar-media-list">
       <li
-        v-for="{ name, link } in media"
+        v-for="{ name, label, link } in media"
         :key="name"
         class="sidebar-media-li"
       >
@@ -53,7 +55,7 @@ const toggleSidebar = () => {
           :href="link"
           target="_blank"
           rel="noopener noreferrer"
-          :aria-label="name"
+          :aria-label="label"
           :tabindex="isActive ? 0 : -1"
         >
           <DIcon :name="name" />

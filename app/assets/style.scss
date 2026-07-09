@@ -33,8 +33,43 @@ li {
 
 img {
   width: 100%;
-  aspect-ratio: attr(width) / attr(height);
+  /* Browsers derive the aspect ratio from the width/height attributes, which
+     reserves the box before the image loads. `attr()` cannot be used here: it
+     only yields strings, so the declaration was dropped and every image
+     collapsed to zero height until it decoded. */
   height: auto;
+}
+
+/* Keyboard users get a visible focus ring everywhere; pointer users don't. */
+:focus-visible {
+  outline: 3px solid $secondary400;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Visually hidden but still announced by screen readers. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+/* Respect users who ask the OS to reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .icon {
@@ -169,6 +204,10 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Reset the UA button chrome — this is a styled tab, not a default button. */
+    padding: 0;
+    border: 0;
+    color: $white;
     border-top-right-radius: 7px;
     border-bottom-right-radius: 7px;
     top: 2rem;

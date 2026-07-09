@@ -19,9 +19,10 @@ const menu = [
         <DImg
           class="header-logo"
           src="/logo/logo.svg"
-          alt="Bham Designs"
+          alt="Bham Designs — home"
           :width="200"
           :height="33"
+          loading="eager"
         />
       </NuxtLink>
       <nav class="header-nav">
