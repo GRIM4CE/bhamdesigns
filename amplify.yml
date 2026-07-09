@@ -5,6 +5,10 @@ frontend:
   phases:
     preBuild:
       commands:
+        # .nvmrc pins Node 24, which bundles npm 11. package-lock.json is
+        # lockfileVersion 3 written by npm 11; npm 10 (bundled with Node 22)
+        # resolves some transitive deps differently and fails `npm ci` with
+        # "Missing: cac@... from lock file". Do not drop back to Node 22.
         - nvm install # uses the version in .nvmrc
         - npm ci
     build:
