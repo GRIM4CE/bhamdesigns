@@ -13,7 +13,10 @@ frontend:
         - npm ci
     build:
       commands:
-        - npm run generate
+        # Amplify's build image exports NITRO_PRESET=aws-amplify, which redirects the
+        # output to .amplify-hosting/ as an SSR bundle. This site is fully prerendered,
+        # so force the static preset to keep everything in .output/public.
+        - NITRO_PRESET=static npm run generate
   artifacts:
     # `nuxt generate` writes the fully prerendered static site here.
     baseDirectory: .output/public
