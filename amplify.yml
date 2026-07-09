@@ -17,7 +17,9 @@ frontend:
       - '**/*'
   cache:
     paths:
-      - node_modules/**/*
+      # npm's tarball cache, not node_modules. A restored node_modules can be
+      # reconciled into package-lock.json, which then breaks `npm ci`.
+      - ~/.npm/**/*
 
 # Amplify serves static files with a short default TTL. These override it.
 customHeaders:
