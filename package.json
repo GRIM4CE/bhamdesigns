@@ -9,6 +9,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "postgenerate": "node scripts/write-404.mjs",
     "images:build": "node scripts/build-gallery-images.mjs",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",

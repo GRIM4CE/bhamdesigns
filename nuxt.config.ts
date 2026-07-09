@@ -37,17 +37,19 @@ export default defineNuxtConfig({
       siteUrl: SITE_URL,
     },
   },
-  compatibilityDate: '2025-07-01',
 
   // The stylesheet is small enough that a separate request costs more than it saves.
   features: {
     inlineStyles: true,
   },
+  compatibilityDate: '2025-07-01',
 
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/', ...galleryRoutes],
+      // Nitro always overwrites /404.html with an empty SPA shell, so the real
+      // error page is prerendered at /404 and copied over it by `postgenerate`.
+      routes: ['/', '/404', ...galleryRoutes],
     },
   },
 

@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { profile } from '~~/shared/data/profile'
+
 const isActive = ref(false)
 
 const media = [
-  { name: 'email', label: 'Email Jon Leibham', link: 'mailto:jleibham@gmail.com' },
-  { name: 'github', label: 'Jon Leibham on GitHub', link: 'https://github.com/GRIM4CE' },
-  { name: 'linkedin', label: 'Jon Leibham on LinkedIn', link: 'https://www.linkedin.com/in/jon-leibham-a29b93105/' },
+  { name: 'email', label: `Email ${profile.name}`, link: `mailto:${profile.email}` },
+  { name: 'github', label: `${profile.name} on GitHub`, link: profile.github },
+  { name: 'linkedin', label: `${profile.name} on LinkedIn`, link: profile.linkedin },
 ]
 
 const toggleSidebar = () => {

@@ -1,13 +1,31 @@
 <script setup lang="ts">
+import { profile, sameAs } from '~~/shared/data/profile'
 import { getSortedProjects } from '~~/shared/data/projects'
 
-const title = 'Jon Leibham | Web Engineer'
+const title = `${profile.name} | ${profile.jobTitle}`
 const description = 'Jon Leibham is a frontend developer working primarily with TypeScript, Vue, and Node.'
 
 useSeo({ title, description, image: '/headshot.jpeg' })
 
-// Roughly the first two rows at the widest breakpoint — enough to cover the fold
-// without eagerly fetching the whole grid.
+const { public: { siteUrl } } = useRuntimeConfig()
+
+useHead({
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      'name': profile.name,
+      'jobTitle': profile.jobTitle,
+      'description': description,
+      'url': siteUrl,
+      'image': `${siteUrl}/headshot.jpeg`,
+      'email': `mailto:${profile.email}`,
+      sameAs,
+    }),
+  }],
+})
+
 const EAGER_CARDS = 10
 
 const route = useRoute()
@@ -24,8 +42,6 @@ const filteredProjects = computed(() => {
 
 <template>
   <div>
-    <!-- The design carries no visible page heading, but the document still needs
-         exactly one h1 for screen readers and crawlers. -->
     <h1 class="visually-hidden">
       Jon Leibham — Web Engineer
     </h1>

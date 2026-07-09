@@ -18,3 +18,33 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
+
+# Amplify serves static files with a short default TTL. These override it.
+customHeaders:
+  # Nuxt fingerprints these filenames, so a new build produces a new URL.
+  - pattern: '/_nuxt/**'
+    headers:
+      - key: Cache-Control
+        value: 'public, max-age=31536000, immutable'
+  - pattern: '/_fonts/**'
+    headers:
+      - key: Cache-Control
+        value: 'public, max-age=31536000, immutable'
+  # Image filenames are stable across builds, so revalidate rather than pin for a year.
+  - pattern: '/galleries/**'
+    headers:
+      - key: Cache-Control
+        value: 'public, max-age=2592000, stale-while-revalidate=86400'
+  - pattern: '/thumbnails/**'
+    headers:
+      - key: Cache-Control
+        value: 'public, max-age=2592000, stale-while-revalidate=86400'
+  # HTML must revalidate, otherwise a deploy takes a month to reach repeat visitors.
+  - pattern: '**/*.html'
+    headers:
+      - key: Cache-Control
+        value: 'public, max-age=0, must-revalidate'
+      - key: X-Content-Type-Options
+        value: nosniff
+      - key: Referrer-Policy
+        value: strict-origin-when-cross-origin
