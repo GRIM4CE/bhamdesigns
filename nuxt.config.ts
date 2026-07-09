@@ -1,24 +1,61 @@
-import { defineNuxtConfig } from 'nuxt'
+import galleries from './shared/data/galleries'
 
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
+const SITE_URL = 'https://bhamdesigns.com'
+
+// Every gallery is a statically generated route; noindex ones stay out of the sitemap.
+const galleryRoutes = galleries.map(gallery => `/gallery/${gallery.slug}`)
+const noIndexRoutes = galleries
+  .filter(gallery => gallery.noIndex)
+  .map(gallery => `/gallery/${gallery.slug}`)
+
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
-  layoutTransition: null,
-  pageTransition: null,
-  head: {
-    link: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://bhamdesigns.imgix.net" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap" }
-    ]
+
+  modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxtjs/sitemap'],
+
+  // SSG: prerender the whole site to static HTML so every page is crawlable.
+  // (Was `ssr: false`, which shipped an empty SPA shell with no SEO.)
+  ssr: true,
+
+  devtools: { enabled: true },
+
+  app: {
+    head: {
+      htmlAttrs: { lang: 'en' },
+    },
   },
-  css: [
-    '@/assets/style.scss'
-  ],
-  modules: ['~/modules/sitemap'],
+
+  css: ['~/assets/style.scss'],
+
+  // Consumed by @nuxtjs/sitemap and by the useSeo() composable for absolute URLs.
+  site: {
+    url: SITE_URL,
+    name: 'Bham Designs',
+  },
+  runtimeConfig: {
+    public: {
+      siteUrl: SITE_URL,
+    },
+  },
+  compatibilityDate: '2025-07-01',
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/', ...galleryRoutes],
+    },
+  },
+
+  typescript: {
+    strict: true,
+    typeCheck: false,
+  },
+
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
   sitemap: {
-    hostname: 'https://bhamdesigns.com',
+    exclude: noIndexRoutes,
   },
-  strict: true,
 })

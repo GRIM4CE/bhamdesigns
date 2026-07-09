@@ -1,0 +1,64 @@
+<script setup lang="ts">
+import type { Project } from '~~/shared/types/project'
+
+const props = defineProps<{ project: Project }>()
+
+// Fixed locale + UTC so prerendered HTML matches the client render (avoids hydration mismatch).
+const formatDate = (unixSeconds: number) =>
+  new Date(unixSeconds * 1000).toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+
+const thumbnail = computed(() => {
+  const { fileType, path } = props.project.image
+  return `/thumbnails/${fileType}/${path}.${fileType}`
+})
+
+const year = computed(() => {
+  const end = props.project.endDate ? formatDate(props.project.endDate) : 'Present'
+  return props.project.startDate ? `${formatDate(props.project.startDate)} – ${end}` : end
+})
+
+const to = computed(() =>
+  props.project.slug?.path ? `/gallery/${props.project.slug.path}` : undefined,
+)
+</script>
+
+<template>
+  <NuxtLink
+    v-if="to"
+    class="card clickable"
+    :to="to"
+  >
+    <div class="card-opacity">
+      <span class="card-title">{{ project.title }}</span>
+      <span class="card-year">{{ year }}</span>
+    </div>
+    <DImg
+      class="card-image"
+      :width="227"
+      :height="227"
+      :src="thumbnail"
+      :alt="project.title"
+    />
+  </NuxtLink>
+
+  <div
+    v-else
+    class="card"
+  >
+    <div class="card-opacity">
+      <span class="card-title">{{ project.title }}</span>
+      <span class="card-year">{{ year }}</span>
+    </div>
+    <DImg
+      class="card-image"
+      :width="227"
+      :height="227"
+      :src="thumbnail"
+      :alt="project.title"
+    />
+  </div>
+</template>

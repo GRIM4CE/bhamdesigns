@@ -6,3 +6,6 @@ node_modules
 .output
 .env
 dist
+
+# OS / editor cruft
+.DS_Store

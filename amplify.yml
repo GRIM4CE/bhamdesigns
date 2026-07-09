@@ -1,0 +1,20 @@
+# AWS Amplify Hosting build settings.
+# Connect this repo in the Amplify console; it auto-detects this file.
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - nvm install # uses the version in .nvmrc
+        - npm ci
+    build:
+      commands:
+        - npm run generate
+  artifacts:
+    # `nuxt generate` writes the fully prerendered static site here.
+    baseDirectory: .output/public
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
