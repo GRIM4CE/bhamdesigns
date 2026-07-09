@@ -3,15 +3,29 @@
 //
 // Run `npm run images:build` after adding or replacing gallery images, then commit
 // both the .webp files and the regenerated manifest. Amplify never runs this — it
-// only consumes the committed output, so `sharp` stays a local dev dependency.
+// only consumes the committed output.
+//
+// `sharp` is deliberately absent from package.json: every Amplify build runs
+// `npm ci`, which would otherwise download its ~30 MB native binary for a script
+// that only ever runs by hand. `npm run images:build` installs it on demand with
+// --no-save, leaving package.json and the lockfile untouched.
 //
 // Why both artifacts matter:
-//   - WebP cuts the transfer size of these photos by roughly a third.
+//   - WebP cuts the transfer size of these photos by roughly two thirds.
 //   - Intrinsic width/height on the <img> reserves the box before the bytes land,
 //     which is what keeps Cumulative Layout Shift at zero.
 import { readdir, stat, writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
-import sharp from 'sharp'
+
+let sharp
+try {
+  ({ default: sharp } = await import('sharp'))
+}
+catch {
+  console.error('sharp is not installed. Run `npm run images:build`, which installs it on demand,')
+  console.error('or install it yourself with `npm install --no-save sharp`.')
+  process.exit(1)
+}
 
 const GALLERY_DIR = new URL('../public/galleries/', import.meta.url)
 const OUT_FILE = new URL('../shared/data/imageDimensions.ts', import.meta.url)
