@@ -68,3 +68,37 @@ Hosted on AWS Amplify Hosting as a static site.
 
 GitHub Actions (`.github/workflows/ci.yml`) runs lint, typecheck and a build on every
 push/PR — deployment itself is handled by Amplify.
+
+### Build performance & cost
+
+Amplify Hosting is billed per build minute, so the build is kept lean. Some of this
+lives in `amplify.yml` (version-controlled); the rest is Amplify console configuration
+that can't be committed and is recorded here so it isn't lost.
+
+Already in `amplify.yml`:
+
+- `nvm install --skip-default-packages` — the image's nvm ships a `default-packages`
+  list (Amplify CLI, Cypress, Hugo, VuePress, Yarn, Bower, grunt-cli, ~1690 packages)
+  that reinstalls on every fresh Node 24 provision and dominated the build (~65s). None
+  of it is used here; `npm` ships with Node. This is the single biggest saving.
+- `npm ci --prefer-offline --no-audit --no-fund` — installs from the cached `~/.npm`
+  tarballs and skips the audit network round-trip (GitHub Actions already gates audits).
+- `cache: ~/.npm` and `~/.nvm/.cache` — reuse the npm tarballs and the Node 24 download
+  across builds.
+- Lint, typecheck and image/WebP processing are deliberately **not** in the Amplify
+  build — they run in GitHub Actions and offline (`npm run images:build`) respectively.
+
+Recommended Amplify console settings (App settings → Build settings):
+
+- **Ignore build settings** — skip a billed build entirely when a commit changes nothing
+  the deployed site cares about. Exit `0` = skip, exit `1` = build:
+
+  ```bash
+  git diff --quiet HEAD^ HEAD -- . ':(exclude).github' ':(exclude)scripts' \
+    ':(exclude)README.md' ':(exclude).vscode' ':(exclude).editorconfig' && exit 0 || exit 1
+  ```
+
+- **Build image settings → package override `Node.js = 24`** — ships Node 24 in the
+  image so `nvm install` finds it already present and skips the download.
+- **PR previews** — leave off unless the preview URLs are needed; GitHub Actions already
+  validates every PR, so previews just double the build count during active work.
