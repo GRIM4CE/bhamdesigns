@@ -10,7 +10,12 @@ frontend:
         # resolves some transitive deps differently and fails `npm ci` with
         # "Missing: cac@... from lock file". Do not drop back to Node 22.
         - nvm install # uses the version in .nvmrc
-        - npm ci
+        # --prefer-offline: install from the cached ~/.npm tarballs below instead of
+        #   revalidating every package against the registry.
+        # --no-audit: skip the vulnerability audit's network round-trip (the CI job on
+        #   GitHub already gates that); it adds latency and occasionally flakes a build.
+        # --no-fund: drop the funding-metadata output.
+        - npm ci --prefer-offline --no-audit --no-fund
     build:
       commands:
         # Amplify's build image exports NITRO_PRESET=aws-amplify, which redirects the
@@ -27,6 +32,9 @@ frontend:
       # npm's tarball cache, not node_modules. A restored node_modules can be
       # reconciled into package-lock.json, which then breaks `npm ci`.
       - ~/.npm/**/*
+      # nvm's download cache. `nvm install` reuses the cached Node 24 tarball here
+      # instead of re-fetching it from nodejs.org on every build.
+      - ~/.nvm/.cache/**/*
 
 # Amplify serves static files with a short default TTL. These override it.
 customHeaders:
