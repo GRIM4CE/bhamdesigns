@@ -9,7 +9,15 @@ frontend:
         # lockfileVersion 3 written by npm 11; npm 10 (bundled with Node 22)
         # resolves some transitive deps differently and fails `npm ci` with
         # "Missing: cac@... from lock file". Do not drop back to Node 22.
-        - nvm install # uses the version in .nvmrc
+        #
+        # --skip-default-packages is the single biggest lever here. The Amplify
+        # build image ships an nvm default-packages file (Amplify CLI, Cypress,
+        # Hugo, VuePress, Yarn, Bower, grunt-cli). Because Node 24 is not the
+        # image's default, every build provisions a fresh 24 and nvm reinstalls
+        # all ~1690 of those globals — ~65s, two-thirds of the whole build — none
+        # of which this static Nuxt site uses. Skipping them leaves just the Node
+        # download (~8s). npm itself is bundled with Node, so nothing is lost.
+        - nvm install --skip-default-packages # uses the version in .nvmrc
         # --prefer-offline: install from the cached ~/.npm tarballs below instead of
         #   revalidating every package against the registry.
         # --no-audit: skip the vulnerability audit's network round-trip (the CI job on
