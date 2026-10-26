@@ -21,6 +21,8 @@ const images = Array.from({ length: count }, (_, index) => {
   const src = `/galleries/${path}/${path}-${index}.webp`
   return {
     src,
+    // The original JPEG is the <img> fallback for browsers without WebP support.
+    fallbackSrc: `/galleries/${path}/${path}-${index}${gallery.images.fileType}`,
     alt: `${gallery.title} – Image ${index + 1} of ${count}`,
     // Intrinsic size reserves the box before the bytes land, which keeps CLS at zero.
     ...getImageDimensions(src),
@@ -53,6 +55,7 @@ useSeo({
         :key="image.alt"
         class="gallery-img"
         :src="image.src"
+        :fallback-src="image.fallbackSrc"
         :alt="image.alt"
         :width="image.width"
         :height="image.height"

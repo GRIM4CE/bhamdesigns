@@ -24,6 +24,13 @@ const thumbnail = computed(() => {
   return `/thumbnails/${fileType}/${path}.${fileType}`
 })
 
+// JPEG fallback for browsers without WebP support, so the card still shows an image.
+const thumbnailFallback = computed(() => {
+  const { fallbackFileType, path } = props.project.image
+  if (!fallbackFileType) return undefined
+  return `/thumbnails/${fallbackFileType}/${path}.${fallbackFileType}`
+})
+
 const year = computed(() => {
   const end = props.project.endDate ? formatDate(props.project.endDate) : 'Present'
   return props.project.startDate ? `${formatDate(props.project.startDate)} – ${end}` : end
@@ -49,6 +56,7 @@ const to = computed(() =>
       :width="227"
       :height="227"
       :src="thumbnail"
+      :fallback-src="thumbnailFallback"
       :alt="project.title"
       :loading="eager ? 'eager' : 'lazy'"
       :fetchpriority="priority ? 'high' : 'auto'"
@@ -68,6 +76,7 @@ const to = computed(() =>
       :width="227"
       :height="227"
       :src="thumbnail"
+      :fallback-src="thumbnailFallback"
       :alt="project.title"
       :loading="eager ? 'eager' : 'lazy'"
       :fetchpriority="priority ? 'high' : 'auto'"
